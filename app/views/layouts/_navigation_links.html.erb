@@ -1,7 +1,14 @@
 <%# add navigation links to this file %>
-<li><%= link_to 'Feedstocks', feedstock_substrate_path %></li>
-<li><%= link_to 'Biogas Output', feedstock_biogas_path %></li>
-<li><%= link_to 'Digestate', feedstock_digestate_path %></li>
-<li><%= link_to 'CHP', fuel_chp_path %></li>
-<li><%= link_to 'Upgrading', fuel_upgrade_path %></li>
-<li><%= link_to 'CO2 Savings', fuel_carbon_path %></li>
+<%# active link is shown  %>
+<li class="<%= 'active' if current_page?(feedstock_substrate_path) %>">
+	<%= link_to 'Feedstocks', feedstock_substrate_path %></li>
+<li class="<%= 'active' if current_page?(feedstock_biogas_path) %>">
+	<%= link_to 'Biogas Output', feedstock_biogas_path %></li>
+<li class="<%= 'active' if current_page?(feedstock_digestate_path) %>">
+	<%= link_to 'Digestate', feedstock_digestate_path %></li>
+<li class="<%= 'active' if current_page?(fuel_chp_path) %>">
+	<%= link_to 'CHP', fuel_chp_path %></li>
+<li class="<%= 'active' if current_page?(fuel_upgrade_path) %>">
+	<%= link_to 'Upgrading', fuel_upgrade_path %></li>
+<li class="<%= 'active' if current_page?(fuel_carbon_path) %>">
+	<%= link_to 'CO2 Savings', fuel_carbon_path %></li>

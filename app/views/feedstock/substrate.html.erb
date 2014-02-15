@@ -1,5 +1,35 @@
 <div class="container">
-	<h1>Feedstock Page</h1>
+	<h4>Select a Feedstock, enter tonnes available, and press calculate button</h4>
 
 
-</div>
+	<div class="col-lg-2">
+		<label class="control-label">Select a feedstock</label>
+		<select class="form-control" name="substrate[category]">
+			<option></option>
+				<option>Brown Bin</option>
+				<option>Grass Silage</option>
+				<option>Paunch</option>
+				<option>Grease traps</option>
+				<option>Cattle Slurry</option>
+		</select>
+	</div>
+
+	<div class="col-lg-2">
+		<label class="control-label">Tonnes</label>
+		<select class="form-control" name="substrate[volume]">
+				<option>1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+		</select>
+	</div><br><br><br><br>
+
+	
+	
+		<%= button_to "Calculate Biogas Output", feedstock_biogas_path, 
+	:method => "get", :class => 'btn btn-success btn-lg' %>
+		<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Cancel</button>
+	
+	
+

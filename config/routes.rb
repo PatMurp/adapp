@@ -1,5 +1,7 @@
 Adapp::Application.routes.draw do
-  root :to => 'visitors#new'
+  #root :to => 'visitors#new'
+
+  root "visitors#new"
 
   get "feedstock/biogas"
   get "feedstock/substrate"
