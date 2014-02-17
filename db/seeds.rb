@@ -1,9 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-# Environment variables (ENV['...']) can be set in the file config/application.yml.
-# See http://railsapps.github.io/rails-environment-variables.html
+# preloaded substrate data
+Substrate.delete_all
+
+Substrate.create!(type: 'Brown Bin',
+	biogas_per_tonne: 117,
+	methane_percent: 0.55,
+	digestate_percent: 0.83)
+#...
+Substrate.create!(type: 'Grass Silage',
+	biogas_per_tonne: 101,
+	methane_percent: 0.60,
+	digestate_percent: 0.9)
+#...
+Substrate.create!(type: 'Cattle Slurry',
+	biogas_per_tonne: 16,
+	methane_percent: 0.60,
+	digestate_percent: 1)

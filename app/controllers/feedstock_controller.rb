@@ -4,6 +4,7 @@ class FeedstockController < ApplicationController
 	end
 
 	def substrate
+		@substrates = Substrate.all
 	end 
 
 	def digestate

@@ -3,33 +3,26 @@
 
 
 	<div class="col-lg-2">
-		<label class="control-label">Select a feedstock</label>
-		<select class="form-control" name="substrate[category]">
-			<option></option>
-				<option>Brown Bin</option>
-				<option>Grass Silage</option>
-				<option>Paunch</option>
-				<option>Grease traps</option>
-				<option>Cattle Slurry</option>
-		</select>
+		<%= form_for :substrate do |f| %>
+
+			<%# dropdown list from substrate database %>
+			<%= f.collection_select :substrate, Substrate.all, :id, :type,
+			{prompt: "Select a Feedstock"}, {class: "form-control"} %>
+
+			<label class="control-label">Tonnes</label>
+			<%= f.number_field :tonnes, :class => 'form-control', :step => 0.25 %><br>
+
+			
+
+		<% end %>
 	</div>
 
-	<div class="col-lg-2">
-		<label class="control-label">Tonnes</label>
-		<select class="form-control" name="substrate[volume]">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-		</select>
-	</div><br><br><br><br>
-
+			<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Cancel</button><br><br>
+			<%= button_to "Calculate Biogas Output", feedstock_biogas_path, 
+			:method => "get", :class => 'btn btn-success btn-lg' %>
+		
 	
-	
-		<%= button_to "Calculate Biogas Output", feedstock_biogas_path, 
-	:method => "get", :class => 'btn btn-success btn-lg' %>
-		<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Cancel</button>
+		
 	
 	
 
