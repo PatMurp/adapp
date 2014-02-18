@@ -1,0 +1,22 @@
+<div class="container">
+	<h4>Select a Feedstock, enter tonnes available, and press calculate button</h4>
+
+
+	<div class="col-lg-2">
+		<%= form_for @feedstock do |f| %>
+
+			<%# dropdown list from substrate database %>
+			<%# f.collection_select :substrate, Substrate.all, :id, :type,
+			{prompt: "Select a Feedstock"}, {class: "form-control"} %>
+
+			<label class="control-label">Tonnes</label>
+			<%= f.number_field :tonnes, :class => 'form-control', :step => 0.25 %><br>
+
+			
+			<%= f.submit "Calculate Biogas Output", :class => 'btn btn-success btn-lg' %><br><br>
+
+
+			<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Cancel</button><br><br>
+
+		<% end %>
+	</div>

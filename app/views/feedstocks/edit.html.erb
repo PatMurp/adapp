@@ -1,0 +1,11 @@
+<h2>Edit Page</h2>
+
+<%= form_for @feedstock do |f| %>
+
+	<p>
+   <%= f.label :tonnes %><br>
+   <%= f.text_area :tonnes %>
+ 	</p>
+
+ 	<%= f.submit %>
+<% end %>

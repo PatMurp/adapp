@@ -1,0 +1,39 @@
+<div class="container">
+	<h3>Biogas Output & Energy Values</h3><br>
+	<div class="col-lg-8">
+
+		<%#<% @feedstock.each do |feedstock| %>
+			<%#<%= @feedstock.tonnes %>
+		<%#<% end %>
+
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<tr>
+					<th>Feedstock</th>
+					<th>Tonnes</th>
+					<th>m&#179; biogas</th>
+					<th>% CH<sub>4</sub></th>
+					<th>m&#179; CH<sub>4</th>
+					<th>kg CH<sub>4</sub></th>
+					<th>Gigajoules</th>
+					<th>MWH</th>
+				</tr>
+				<tr>
+					<td>Placeholder</td>
+					<td class="text-right">0</td>
+					<td class="text-right">0</td>
+					<td class="text-right">0</td>
+					<td class="text-right">0</td>
+					<td class="text-right">0</td>
+					<td class="text-right">0</td>
+					<td class="text-right">0</td>
+				</tr>
+			</table>
+		</div>
+	</div><br><br><br><br><br>
+
+	
+
+		<%= button_to "Calculate Digestate Output", feedstock_digestate_path, 
+	:method => "get", :class => 'btn btn-success btn-lg' %>
+</div>

@@ -1,14 +1,17 @@
 Adapp::Application.routes.draw do
-  #root :to => 'visitors#new'
+  root :to => 'visitors#new'
+  #root "visitors#new"
 
-  root "visitors#new"
+  resources :feedstocks
 
-  get "feedstock/biogas"
-  get "feedstock/substrate"
-  get "feedstock/digestate"
+  # post "feedstock/substrate"
 
-  get "fuel/chp"
-  get "fuel/upgrade"
-  get "fuel/carbon"
+  # get "feedstock/biogas"
+  # get "feedstock/substrate"
+  # get "feedstock/digestate"
+
+  # get "fuel/chp"
+  # get "fuel/upgrade"
+  # get "fuel/carbon"
   
 end
