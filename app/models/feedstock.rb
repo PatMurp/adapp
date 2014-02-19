@@ -1,5 +1,3 @@
 class Feedstock < ActiveRecord::Base
-	has_many :substrates
-
-	validates :tonnes, presence: true
+	self.inheritance_column = nil
 end

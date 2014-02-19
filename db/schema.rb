@@ -17,13 +17,8 @@ ActiveRecord::Schema.define(version: 20140217103112) do
   enable_extension "plpgsql"
 
   create_table "feedstocks", force: true do |t|
-    t.decimal  "tonnes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "substrates", force: true do |t|
     t.string   "type"
+    t.decimal  "tonnes"
     t.decimal  "biogas_per_tonne"
     t.decimal  "methane_percent"
     t.decimal  "digestate_percent"

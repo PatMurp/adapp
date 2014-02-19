@@ -8,10 +8,13 @@ Adapp::Application.routes.draw do
 
   # get "feedstock/biogas"
   # get "feedstock/substrate"
-  # get "feedstock/digestate"
+  get "feedstock/digestate"
 
   # get "fuel/chp"
   # get "fuel/upgrade"
   # get "fuel/carbon"
+
+  # !!!  delete this route eventually 
+  match ':controller(/:action(/:id))', :via => :get
   
 end
