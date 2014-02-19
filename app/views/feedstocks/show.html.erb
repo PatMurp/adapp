@@ -51,5 +51,53 @@
 	</div>
 </div>
 
+		
+		<div class="col-lg-6">
+		<div class="table-responsive">
+			<table class="table table-bordered">
+			<h3>Energy values Hardcoded CHP heat values</h3>
+				<caption>All values are in MWH unless stated otherwise</caption>
+				<tr>
+					<th>Generated Heat</th>
+					<th>Usable Heat</th>
+					<th>Salable</th>
+					<th>Price per kw €</th>
+					<th>Value €</th>
+				</tr>
+				<tr>
+					<td class="text-right"><%= @mwh_methane %></td>
+					<td class="text-right"><%= @usable_heat %></td>
+					<td class="text-right"><%= @salable_heat %></td>
+					<td class="text-right"><%= 0.96 %></td>
+					<td class="text-right"><%= @heat_value %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="col-lg-6">
+		<div class="table-responsive">
+			<table class="table table-bordered">
+			<h3>Energy values Hardcoded CHP Electricity values</h3>
+				<caption>All values are in MWH unless stated otherwise</caption>
+				<tr>
+					<th>Generated Elec</th>
+					<th>Salable Elec</th>
+					<th>Price per kw €</th>
+					<th>Value €</th>
+					<th>Generator Size MW</th>
+				</tr>
+				<tr>
+					<td class="text-right"><%= @potential_elec %></td>
+					<td class="text-right"><%= @salable_elec %></td>
+					<td class="text-right"><%= 130 %></td>
+					<td class="text-right"><%= @elec_value %></td>
+					<td class="text-right"><%= @gen_size %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
 <%= button_to "Start Calculation", new_feedstock_path, 
 	:method => "get", :class => 'btn btn-primary btn-lg' %>

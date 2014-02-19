@@ -14,7 +14,7 @@ Adapp::Application.routes.draw do
   # get "fuel/upgrade"
   # get "fuel/carbon"
 
-  # !!!  delete this route eventually 
+  # !!!  default route delete this route eventually 
   match ':controller(/:action(/:id))', :via => :get
   
 end

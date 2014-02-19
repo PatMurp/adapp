@@ -46,6 +46,15 @@ class FeedstocksController < ApplicationController
 		@vol_nitrogen = cal_digestate_nitrogen 
 		@vol_phosphorus = cal_digestate_phosphorus
 		@vol_potash = cal_digestate_potash
+
+		@usable_heat = cal_usable_heat
+		@salable_heat = cal_salable_heat
+		@heat_value = cal_heat_value
+
+		@potential_elec = cal_potential_elec
+		@salable_elec = cal_salable_elec
+		@elec_value = cal_elec_value
+		@gen_size = cal_generator_size
 	end
 
 
@@ -104,6 +113,48 @@ class FeedstocksController < ApplicationController
 	# assuming 2.8 kg per tonne
 	def cal_digestate_potash val = 0.0028
 		(cal_digestate_tonnes * val).round 3
+	end
+
+	# calculate usable heat CHP
+	# fixed only half usable
+	def cal_usable_heat val = 0.5
+		(cal_mwh_ch4 * val).round 2 
+	end
+
+	# calculate salable heat CHP
+	# fixed only half of usable is salable
+	def cal_salable_heat val = 0.5
+		(cal_usable_heat * val).round 2 
+	end
+
+	# calculate heat value
+	# €0.96 per kwh / 1000 for mwh
+	# ideally user should be able to set price
+	def cal_heat_value val = 0.96 
+			(cal_salable_heat * val /1000).round 2
+	end
+
+	# calculate potential electricity generated
+	# fixed 30% value of available energy
+	def cal_potential_elec val = 0.3
+		(cal_mwh_ch4 * val).round 2 
+	end
+
+	# calculate salable electricity
+	# fixed 80% efficiency
+	def cal_salable_elec val = 0.8
+		(cal_potential_elec * val).round 2 
+	end
+
+	# calculate electricity value
+	# €130 per kwh / 1000 for mwh
+	# ideally user should be able to set price
+	def cal_elec_value val = 130
+		(cal_salable_elec * val / 1000).round 2
+	end
+
+	def cal_generator_size val = 365 * 24
+		(cal_potential_elec / val).round 3
 	end
 
 end
