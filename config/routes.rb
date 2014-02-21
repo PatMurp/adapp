@@ -8,7 +8,7 @@ Adapp::Application.routes.draw do
 
   # get "feedstock/biogas"
   # get "feedstock/substrate"
-  get "feedstock/digestate"
+  #get "feedstock/digestate"
 
   # get "fuel/chp"
   # get "fuel/upgrade"

@@ -9,6 +9,8 @@
 			<%# f.collection_select :substrate, Substrate.all, :id, :type,
 			{prompt: "Select a Feedstock"}, {class: "form-control"} %>
 
+			<%= select_tag(:feedstock_id, options_for_select(@feedstocks_options)) %><br><br>
+
 			<label class="control-label">Tonnes</label>
 			<%= f.number_field :tonnes, :class => 'form-control', :step => 0.25 %><br>
 

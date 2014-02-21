@@ -1,4 +1,4 @@
-# preloaded substrate data
+# preloaded feedstock data
 Feedstock.delete_all
 
 Feedstock.create!(type: 'Brown Bin',
