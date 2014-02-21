@@ -12,12 +12,12 @@ class FeedstocksController < ApplicationController
 	# end
 
 	def index
-		@feedstocks = Feedstock.all
+		@feedstocks_options = Feedstock.all.map{|f| [ f.type, f.id ] }
 	end
 
 		
 	def new
-		#@all_feedstocks = Feedstock.all
+		@feedstocks = Feedstock.all
 		@feedstock = Feedstock.new
 	end   
 
@@ -25,6 +25,7 @@ class FeedstocksController < ApplicationController
 	def create
 		@feedstock = Feedstock.new()
 		@feedstock.tonnes = params[:feedstock][:tonnes]
+		#@feedstock_tonnes = params[:some_var]
 
 		
 		if @feedstock.save
@@ -62,11 +63,16 @@ class FeedstocksController < ApplicationController
 		@feedstock = Feedstock.find(params[:id])
 	end
 
+	def select_tonnes
+		params[:some_var]
+	end
+
 	private
 
 	# calculate biogas output from feedstock 
 	def cal_m3_biogas val = 101
 		(@biogas_output = @feedstock.tonnes  * val).round 2
+		#(@biogas_output = @feedstock_tonnes  * val).round 2
 	end
 
 	# calculate methane output from feedstock
@@ -153,6 +159,7 @@ class FeedstocksController < ApplicationController
 		(cal_salable_elec * val / 1000).round 2
 	end
 
+	# calculate required generator size
 	def cal_generator_size val = 365 * 24
 		(cal_potential_elec / val).round 3
 	end
