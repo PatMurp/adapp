@@ -12,8 +12,7 @@ class FeedstocksController < ApplicationController
 	# end
 
 	def index
-		@feedstocks_options = Feedstock.all.map{|f| [ f.type, f.id ] }
-		#@feedstocks = Feedstock.all
+		@feedstocks = Feedstock.all
 	end
 
 		
@@ -27,11 +26,11 @@ class FeedstocksController < ApplicationController
 	def create
 		@feedstock = Feedstock.new()
 		@feedstock.tonnes = params[:feedstock][:tonnes]
-		
+
 		if @feedstock.save
       redirect_to @feedstock
     else
-      render :edit
+      render :new
     end
 	end
 

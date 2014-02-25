@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+# validation in feedstock model needs to be uncommented to pass tests
+
 describe Feedstock do 
 	#it "is valid with a type, tonnes, biogas_per_tonne, methane_percent and digestate_percent" do
 		#feedstock = Feedstock.new(

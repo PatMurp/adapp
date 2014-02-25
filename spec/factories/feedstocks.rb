@@ -1,4 +1,3 @@
-require 'faker'
 
 FactoryGirl.define do 
 	factory :feedstock do
@@ -7,5 +6,10 @@ FactoryGirl.define do
 		biogas_per_tonne	95
 		methane_percent	65
 		digestate_percent 85
+	
+
+		factory :invalid_feedstock do
+			tonnes nil
+		end
 	end
 end

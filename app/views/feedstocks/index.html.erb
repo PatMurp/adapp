@@ -1,21 +1,11 @@
 <div class="container">
 	<h2>Select a feedstock</h2>
 	<div class="col-lg-2">
-		<%= form_for :feedstock do |f| %>
+		<%= @feedstocks.each do |feedstock| %>
 
-			<%# dropdown list from feedstock database %>
-			<%#= f.collection_select :feedstock, Feedstock.all, :id, :type,
-			{prompt: "Select a Feedstock"}, {class: "form-control"} %><br>
+			
 
-			<%= select_tag(:feedstock_id, options_for_select(@feedstocks_options)) %><br><br>
-
-			<label>Select Tonnes</label>
-			<%= form_tag :action => "select_tonnes" %>
-    	<%= number_field_tag :some_var %>
-
-
-
-			<%= f.submit "calculate" %>
+			
 
 		<% end %>
 	</div>
