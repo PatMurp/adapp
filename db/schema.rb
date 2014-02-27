@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217103112) do
+ActiveRecord::Schema.define(version: 20140225155627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calculations", force: true do |t|
+    t.integer  "feedstock_id"
+    t.decimal  "tonnes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calculations", ["feedstock_id"], name: "index_calculations_on_feedstock_id", using: :btree
 
   create_table "feedstocks", force: true do |t|
     t.string   "type"

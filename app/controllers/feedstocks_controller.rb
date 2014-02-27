@@ -166,5 +166,4 @@ class FeedstocksController < ApplicationController
 	def cal_generator_size val = 365 * 24
 		(cal_potential_elec / val).round 3
 	end
-
 end

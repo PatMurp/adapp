@@ -70,5 +70,6 @@ describe FeedstocksController do
 				expect(response). to render_template :new
 			end
 		end
+
 	end
 end

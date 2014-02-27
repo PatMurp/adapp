@@ -11,6 +11,9 @@ describe Feedstock do
 			#methane_percent: 54,
 			#digestate_percent: 89)
 		#expect(feedstock).to be_valid
+
+	it { should have_many(:calculations) }	
+
 	it "has a valid factory" do
 		expect(create(:feedstock)).to be_valid
 	end
@@ -19,9 +22,14 @@ describe Feedstock do
 		expect(build(:feedstock, type: nil)).to have(1).errors_on(:type)
 	end
 
-	it "is invalid without a tonnes" do
-		expect(build(:feedstock, tonnes: nil)).to have(1).errors_on(:tonnes)
-	end
+
+	#it "has a relationship with Calculation" do 
+		#feedstock = create(:feedstock)
+		#calculation = create(:calculation)
+		#feedstock.calculations <<calculation
+
+		#Feedstock.find(1).calculations.should == calculation
+	#end
 
 	it "is invalid without a biogas_per_tonne" do
 		expect(build(:feedstock, biogas_per_tonne: nil))
