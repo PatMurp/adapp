@@ -1,2 +1,34 @@
-<h1>Calculations#show</h1>
-<p>Find me in app/views/calculations/show.html.erb</p>
+<div class="container">
+	<%= link_to("<< Back to Calculation List", {:action => 'index'}, :class => 'back-link') %>
+	<h3>Biogas Output & Energy Values</h3><br>
+	<div class="col-lg-8">
+
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<tr>
+					<th>Feedstock</th>
+					<th>Tonnes</th>
+					<th>biogas/tonne</th>
+					<th>m&#179; biogas</th>
+					<th>% CH<sub>4</sub></th>
+					<th>m&#179; CH<sub>4</th>
+					<th>kg CH<sub>4</sub></th>
+					<th>Gigajoules</th>
+					<th>MWH</th>
+				</tr>
+				<tr>
+					<td><%= @calculation.feedstock.type %></td>
+					<td class="text-right"><%= @calculation.tonnes %></td>
+					<td class="text-right"><%= @calculation.feedstock.biogas_per_tonne %></td>
+					<td class="text-right"><%= @m3_biogas %></td>
+					<td class="text-right"><%= @calculation.feedstock.methane_percent * 100 %></td>
+					<td class="text-right"><%= @m3_methane %></td>
+					<td class="text-right"><%= @kg_methane %></td>
+					<td class="text-right"><%= @gj_methane  %></td>
+					<td class="text-right"><%= @mwh_methane  %></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+

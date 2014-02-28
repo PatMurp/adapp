@@ -1,11 +1,9 @@
 Adapp::Application.routes.draw do
-  get "calculations/index"
-  get "calculations/new"
-  get "calculations/show"
   root :to => 'visitors#new'
   #root "visitors#new"
 
   resources :feedstocks
+  resources :calculation
 
   # post "feedstock/substrate"
 

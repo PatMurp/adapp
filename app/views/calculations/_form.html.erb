@@ -1,0 +1,10 @@
+<table>
+	<tr>
+		<th><%= f.label(:feedstock_id, "Feedstock") %></th>
+		<td><%= f.select(:feedstock_id, @feedstocks.map {|s| [s.type, s.id]}) %></td>
+	</tr><br>
+	<tr>
+		<th><%= f.label(:tonnes, "Tonnes") %></th>
+		<td><%= f.number_field(:tonnes) %></td>
+	</tr>
+</table><br>
