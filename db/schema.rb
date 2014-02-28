@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140225155627) do
 
   create_table "feedstocks", force: true do |t|
     t.string   "type"
-    t.decimal  "tonnes"
     t.decimal  "biogas_per_tonne"
     t.decimal  "methane_percent"
     t.decimal  "digestate_percent"

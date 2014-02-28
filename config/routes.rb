@@ -3,7 +3,7 @@ Adapp::Application.routes.draw do
   #root "visitors#new"
 
   resources :feedstocks
-  resources :calculation
+  get "calculations/new"
 
   # post "feedstock/substrate"
 
@@ -15,7 +15,7 @@ Adapp::Application.routes.draw do
   # get "fuel/upgrade"
   # get "fuel/carbon"
 
-  # !!!  default route delete this route eventually 
+  
   match ':controller(/:action(/:id))', :via => [:get, :post]
   
 end

@@ -1,10 +1,13 @@
 <table>
 	<tr>
-		<th><%= f.label(:feedstock_id, "Feedstock") %></th>
-		<td><%= f.select(:feedstock_id, @feedstocks.map {|s| [s.type, s.id]}) %></td>
-	</tr><br>
-	<tr>
-		<th><%= f.label(:tonnes, "Tonnes") %></th>
-		<td><%= f.number_field(:tonnes) %></td>
-	</tr>
+		<div class="col-lg-2">
+		<label><%= f.label(:feedstock_id, "Feedstock") %></label>
+		<%= f.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]},
+		{prompt: "Select a Feedstock"}, {class: "form-control"} %>
+		</div>
+		<div class="col-lg-2">
+		<label><%= f.label(:tonnes, "Tonnes") %></label>
+		<%= f.number_field(:tonnes, :class => 'form-control', :step => 0.25) %>
+		</div>
 </table><br>
+

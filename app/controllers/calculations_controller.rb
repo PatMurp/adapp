@@ -24,7 +24,7 @@ class CalculationsController < ApplicationController
   	if @calculation.save
   		redirect_to(:action => 'show', :id => @calculation.id)
   	else
-  		flash[:error] = "Please enter a value for tonnes."
+  		flash[:error] = "Please ensure a feedstock is selected and a value is entered for tonnes."
   		@feedstocks = Feedstock.all
   		render('new')
   	end
