@@ -20,21 +20,21 @@
 					<td><%= @calculation.feedstock.type %></td>
 					<td class="text-right"><%= @calculation.tonnes %></td>
 					<td class="text-right"><%= @calculation.feedstock.biogas_per_tonne %></td>
-					<td class="text-right"><%= @m3_biogas %></td>
+					<td class="text-right"><%= @calculation.cal_m3_biogas %></td>
 					<td class="text-right"><%= @calculation.feedstock.methane_percent * 100 %></td>
-					<td class="text-right"><%= @m3_methane %></td>
-					<td class="text-right"><%= @kg_methane %></td>
-					<td class="text-right"><%= @gj_methane  %></td>
-					<td class="text-right"><%= @mwh_methane  %></td>
+					<td class="text-right"><%= @calculation.cal_m3_ch4 %></td>
+					<td class="text-right"><%= @calculation.cal_kg_ch4  %></td>
+					<td class="text-right"><%= @calculation.cal_gigjoules_ch4  %></td>
+					<td class="text-right"><%= @calculation.cal_mwh_ch4  %></td>
 				</tr>
 			</table>
 		</div>
 	
 
-	<h3>Digestate volume & Estimated Nutrient Volumes</h3>
-		<div class="col-lg-6">
-			<div class="table-responsive">
-				<table class="table table-bordered">
+		<h3>Digestate volume & Estimated Nutrient Volumes</h3>
+			<div class="col-lg-6">
+				<div class="table-responsive">
+					<table class="table table-bordered">
 					<caption>All values are in tonnes</caption>
 					<tr>
 						<th>Feedstock</th>
@@ -45,10 +45,10 @@
 					</tr>
 					<tr>
 						<td><%= @calculation.feedstock.type %></td>
-						<td class="text-right"><%= @vol_digestate %></td>
-						<td class="text-right"><%= @vol_nitrogen %></td>
-						<td class="text-right"><%= @vol_phosphorus %></td>
-						<td class="text-right"><%= @vol_potash %></td>
+						<td class="text-right"><%= @calculation.cal_digestate_tonnes %></td>
+						<td class="text-right"><%= @calculation.cal_digestate_nitrogen %></td>
+						<td class="text-right"><%= @calculation.cal_digestate_phosphorus %></td>
+						<td class="text-right"><%= @calculation.cal_digestate_potash %></td>
 					</tr>
 				</table>
 			</div>

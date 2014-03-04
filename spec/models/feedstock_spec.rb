@@ -22,15 +22,6 @@ describe Feedstock do
 		expect(build(:feedstock, type: nil)).to have(1).errors_on(:type)
 	end
 
-
-	#it "has a relationship with Calculation" do 
-		#feedstock = create(:feedstock)
-		#calculation = create(:calculation)
-		#feedstock.calculations <<calculation
-
-		#Feedstock.find(1).calculations.should == calculation
-	#end
-
 	it "is invalid without a biogas_per_tonne" do
 		expect(build(:feedstock, biogas_per_tonne: nil))
 		.to have(1).errors_on(:biogas_per_tonne)
