@@ -1,13 +1,12 @@
 <table>
-	<tr>
-		<div class="col-lg-2">
+	<div class="col-lg-2">
 		<label><%= f.label(:feedstock_id, "Feedstock") %></label>
 		<%= f.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]},
 		{prompt: "Select a Feedstock"}, {class: "form-control"} %>
-		</div>
-		<div class="col-lg-2">
+	</div>
+	<div class="col-lg-2">
 		<label><%= f.label(:tonnes, "Tonnes") %></label>
 		<%= f.number_field(:tonnes, :class => 'form-control', :step => 0.25) %>
-		</div>
+	</div>
 </table><br>
 

@@ -29,6 +29,30 @@
 				</tr>
 			</table>
 		</div>
+	
+
+	<h3>Digestate volume & Estimated Nutrient Volumes</h3>
+		<div class="col-lg-6">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<caption>All values are in tonnes</caption>
+					<tr>
+						<th>Feedstock</th>
+						<th>Tonnes</th>
+						<th>Nitrogen</th>
+						<th>Phosphorus</th>
+						<th>Potassium</th>
+					</tr>
+					<tr>
+						<td><%= @calculation.feedstock.type %></td>
+						<td class="text-right"><%= @vol_digestate %></td>
+						<td class="text-right"><%= @vol_nitrogen %></td>
+						<td class="text-right"><%= @vol_phosphorus %></td>
+						<td class="text-right"><%= @vol_potash %></td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </div>
 

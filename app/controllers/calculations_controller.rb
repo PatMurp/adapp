@@ -12,7 +12,13 @@ class CalculationsController < ApplicationController
 		@kg_methane = cal_kg_ch4
 		@gj_methane = cal_gigjoules_ch4
 		@mwh_methane = cal_mwh_ch4
+
+    @vol_digestate = cal_digestate_tonnes
+    @vol_nitrogen = cal_digestate_nitrogen 
+    @vol_phosphorus = cal_digestate_phosphorus
+    @vol_potash = cal_digestate_potash
   end
+
 
   def new
   	@calculation = Calculation.new
@@ -83,5 +89,27 @@ class CalculationsController < ApplicationController
 	def cal_mwh_ch4 val = 3.6
 		(cal_gigjoules_ch4 / val).round 2
 	end
-  
+
+  # calculate digestate volumes
+  def cal_digestate_tonnes val = @calculation.feedstock.digestate_percent
+    (@digestate_output = @calculation.tonnes  * val).round 2
+  end
+
+  # calculate nitrogen volume from digestate
+  # assuming 5 kg per tonne
+  def cal_digestate_nitrogen val = 0.005
+    (cal_digestate_tonnes * val).round 3
+  end
+
+  # calculate phosphorus volume from digestate
+  # assuming 0.9 kg per tonne
+  def cal_digestate_phosphorus val = 0.0009
+    (cal_digestate_tonnes * val).round 3
+  end
+
+  # calculate potash volume from digestate
+  # assuming 2.8 kg per tonne
+  def cal_digestate_potash val = 0.0028
+    (cal_digestate_tonnes * val).round 3
+  end
 end
