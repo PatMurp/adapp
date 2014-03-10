@@ -2,33 +2,35 @@
 	<h2>Calculations List</h2>
 	
 	<div class="col-lg-8">
-		<%= link_to("Add New Calculation", {:action => 'new',}, :class => 'action new') %>
-		<table class="table table-striped">
-			<tr>
-				<th>Chosen Feedstock</th>
-				<th>Tonnes</th>
-				<th>Biogas Output</th>
-				<th>Edit Values</th>
-				<th>Delete</th>
-			</tr>
-			<% @calculations.each do |calculation| %>
+		<%= link_to("Add New Calculation", {:action => 'new',}, :class => 'action new btn btn-primary') %><br><br>
+		<div class="well">
+			<table class="table table-striped">
 				<tr>
-					<td><%= calculation.feedstock.type %></td>
-					<td><%= calculation.tonnes %></td>
-					<td>
-						<%= link_to("Show", {:action => 'show', :id => calculation.id}, 
-						:class => 'action show') %>
-					</td>
-					<td>
-						<%= link_to("Change", {:action => 'edit', :id => calculation.id}, 
-						:class => 'action edit') %>
-					</td>
-					<td>
-						<%= link_to("Delete", {:action => 'destroy', :id => calculation.id},
-						:class => 'action destroy',  data: { confirm: 'Are you sure?' }) %>
-					</td>
+					<th>Chosen Feedstock</th>
+					<th>Tonnes</th>
+					<th>Biogas Output</th>
+					<th>Edit Values</th>
+					<th>Delete</th>
 				</tr>
-			<% end %>
-		</table>
+				<% @calculations.each do |calculation| %>
+					<tr>
+						<td><%= calculation.feedstock.type %></td>
+						<td><%= calculation.tonnes %></td>
+						<td>
+							<%= link_to("View Biogas Output", {:action => 'show', :id => calculation.id}, 
+							:class => 'action show btn btn-success btn-xs') %>
+						</td>
+						<td>
+							<%= link_to("Change", {:action => 'edit', :id => calculation.id}, 
+							:class => 'action edit btn btn-info btn-xs') %>
+						</td>
+						<td>
+							<%= link_to("Delete", {:action => 'destroy', :id => calculation.id},
+							:class => 'action destroy btn btn-danger btn-xs',  data: { confirm: 'Are you sure?' }) %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
 	</div>
 </div>

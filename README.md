@@ -1,5 +1,9 @@
 Adapp
 =========
+This app is a final year project for a Higher Diploma in Computer Science (Level 8) in [Waterford_Institute_of_Technology](http://www.wit.ie/). 
+
+A deployed version of [Adapp](http://adcalapp.herokuapp.com/) is available. The starter code described below was used.
+
 
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).

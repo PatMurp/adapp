@@ -1,5 +1,6 @@
 <div class="container">
-	<%= link_to("<< Back to Calculation List", {:action => 'index'}, :class => 'back-link') %>
+	<br>
+	<%= link_to("<< Back to Calculation List", {:action => 'index'}, :class => 'back-link btn btn-primary') %>
 	<h2>Change Values</h2>
 
 	<%= form_for(:calculation, :url => {:action => 'update', :id => @calculation.id}) do |f| %>

@@ -1,5 +1,7 @@
+
 <div class=container>
-	<%= link_to("<< Back to Calculation List", {:action => 'index'}, :class => 'back-link') %>
+	<br>
+	<%= link_to("<< Back to Calculation List", {:action => 'index'}, :class => 'back-link btn btn-primary') %>
 	<h4>Select a Feedstock, enter tonnes available, and press calculate button</h4>
 
 	<% if !flash[:error].blank? %>
