@@ -4,6 +4,8 @@ describe Calculation do
 
 	it { should belong_to(:feedstock) }
 
+  it { should belong_to(:project) }
+
   it "has a valid factory" do
   	expect(create(:calculation)).to be_valid
   end

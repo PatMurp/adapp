@@ -12,6 +12,7 @@ class CalculationsController < ApplicationController
   def new
   	@calculation = Calculation.new
   	@feedstocks = Feedstock.all
+   
   end
 
   def create
@@ -40,6 +41,8 @@ class CalculationsController < ApplicationController
     end
   end
 
+ 
+
   def destroy
   	@calculation = Calculation.find(params[:id]).destroy
   	redirect_to(:action => 'index')
@@ -50,4 +53,5 @@ class CalculationsController < ApplicationController
   def calculation_params
   	params.require(:calculation).permit(:tonnes, :feedstock_id)
   end
+
 end

@@ -1,7 +1,9 @@
 Adapp::Application.routes.draw do
+  
   root :to => 'visitors#new'
   #root "visitors#new"
 
+  resources :projects
   resources :feedstocks
   get "calculations/new"
 

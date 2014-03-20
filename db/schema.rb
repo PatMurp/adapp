@@ -11,25 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140225155627) do
+ActiveRecord::Schema.define(version: 20140319141031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "calculations", force: true do |t|
     t.integer  "feedstock_id"
+    t.integer  "project_id"
     t.decimal  "tonnes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "calculations", ["feedstock_id"], name: "index_calculations_on_feedstock_id", using: :btree
+  add_index "calculations", ["project_id"], name: "index_calculations_on_project_id", using: :btree
 
   create_table "feedstocks", force: true do |t|
     t.string   "type"
     t.decimal  "biogas_per_tonne"
     t.decimal  "methane_percent"
     t.decimal  "digestate_percent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

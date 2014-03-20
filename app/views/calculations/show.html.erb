@@ -49,10 +49,10 @@
 					</tr>
 					<tr>
 						<td><%= @calculation.feedstock.type %></td>
-						<td class="text-right"><%= @calculation.calc_digestate_tonnes %></td>
+						<td class="text-right"><%= (@calculation.calc_digestate_tonnes) %></td>
 						<td class="text-right"><%= @calculation.calc_digestate_nitrogen %></td>
 						<td class="text-right"><%= @calculation.calc_digestate_phosphorus %></td>
-						<td class="text-right"><%= @calculation.calc_digestate_potash %></td>
+						<td class="text-right"><%= number_delimiter@calculation.calc_digestate_potash %></td>
 					</tr>
 				</table>
 			</div>

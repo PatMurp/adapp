@@ -1,0 +1,14 @@
+<div class="col-md-8">
+	<%= form_for(@project) do |f| %>
+		<div class="col-md-3">
+			<label><%= f.label :name, class: "form-control" %></label><br>
+			<%= f.text_field :name, class: "form-control" %><br>
+
+			<%= f.submit %>
+		</div>
+		
+	<% end %>
+</div>
+
+<br>
+    

@@ -9,6 +9,13 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+
+    <% if !flash[:error].blank? %>
+      <div>
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    
     <header>
       <%= render 'layouts/navigation' %>
     </header>

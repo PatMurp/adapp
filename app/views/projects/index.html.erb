@@ -1,0 +1,29 @@
+<div class="container">
+	<h2>My Projects Listing</h2>
+
+	<div class="col-md-4">
+		<%= link_to 'New Project', new_project_path, :class => 'btn btn-primary' %> <br><br>
+		<div class="well">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @projects.each do |project| %>
+						<tr>
+							<td><%= project.name %></td>
+							<td><%= link_to 'Show', project, :class => 'btn btn-success btn-xs' %></td>
+        			<td><%= link_to 'Edit', edit_project_path(project), :class => 'btn btn-info btn-xs'  %></td>
+        			<td><%= link_to 'Destroy', project, method: :delete, :class => 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' } %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
