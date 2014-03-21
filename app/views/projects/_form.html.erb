@@ -1,14 +1,35 @@
 <div class="col-md-8">
-	<%= form_for(@project) do |f| %>
-		<div class="col-md-3">
-			<label><%= f.label :name, class: "form-control" %></label><br>
-			<%= f.text_field :name, class: "form-control" %><br>
+	<%= form_for @project do |f| %>
 
-			<%= f.submit %>
-		</div>
+		
+			<%#= Project name field %>
+			<div class="col-md-3">
+				<label><%= f.label :name, "Project Name" %></label>
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+			<div class="clearfix"></div><br>
+
+			
+			<%#= Calculations form builder %>
+			<%= f.fields_for :calculations do |builder| %>
+				<div class="row">
+					<div class="col-md-3">
+						<%= builder.number_field :tonnes, class: "form-control", 
+						autofocus: true, placeholder: 'Enter Tonnes' %>
+					</div>
+
+					<div class="col-md-3">
+						<%= builder.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]}, 
+						{prompt: "Select a Feedstock"}, {class: "form-control"}  %><br>
+					</div>
+				</div>
+			<% end %>
+
+			<%= f.submit "Calculate", class: "btn btn-success btn-lg" %>
+			<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Reload Form</button>
 		
 	<% end %>
 </div>
 
-<br>
+
     

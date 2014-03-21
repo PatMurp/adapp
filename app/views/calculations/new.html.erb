@@ -19,9 +19,9 @@
 			</div>
 
 
-			<% 3.times { -%>
+			<%# 3.times { -%>
 				<%= render(:partial => "form", :locals => {:f => f}) %>
-			<% } -%><br>
+			<%# } -%><br>
 
 			<%= f.submit "Calculate ", :class => 'btn btn-success btn-lg' %>
 			<%#= link_to("Add Field", {:action => ''}, :class => 'btn btn-warning') %>

@@ -2,11 +2,14 @@ class ProjectsController < ApplicationController
 	before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@projects = Project.all
+  	@projects = Project.newest_first
   end
 
   def new
   	@project = Project.new
+    @feedstocks = Feedstock.all
+    3.times { @project.calculations.build }
+    #@project.calculations.build
   end
 
   def show
@@ -23,6 +26,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @feedstocks = Feedstock.all
   end
 
   def update
@@ -47,7 +51,8 @@ class ProjectsController < ApplicationController
 
   # whitelisted parameters
   def project_params
-  	params.require(:project).permit(:name)
+  	params.require(:project).permit(:name,
+                                    calculations_attributes: [:id, :tonnes, :feedstock_id])
   end
 end
 

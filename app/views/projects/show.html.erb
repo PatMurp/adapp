@@ -1,7 +1,80 @@
-<div class="container">
-	<%= link_to '<<< Back to Projects', projects_path, :class => 'btn btn-primary' %><br><br>
+<div class="container"><br>
+	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary' %>
+	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
+
+	<h3><%= @project.name %> Project</h3>
+
+	<div class="col-md-9">
+		<div class="table-responsive">
+				<div class="well">
+					<table class="table table-bordered">
+						<caption><strong>Biogas Output & Energy Values</strong></caption>
+						<thead>
+							<tr>
+								<th>Feedstock</th>
+								<th>Tonnes</th>
+								<th>biogas/tonne</th>
+								<th>m&#179; biogas</th>
+								<th>% CH<sub>4</sub></th>
+								<th>m&#179; CH<sub>4</th>
+								<th>kg CH<sub>4</sub></th>
+								<th>Gigajoules</th>
+								<th>MWH</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for calculation in @project.calculations %>
+								<tr class="success">
+									<td><%= calculation.feedstock.type %></td>
+									<td class="text-right"><%= number_delimiter(calculation.tonnes) %></td>
+									<td class="text-right"><%= calculation.feedstock.biogas_per_tonne %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_m3_biogas) %></td>
+									<td class="text-right"><%= number_percent(calculation.feedstock.methane_percent * 100) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_m3_ch4) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_kg_ch4) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_gigjoules_ch4) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_mwh_ch4) %></td>
+								</tr>
+							<% end %>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	
-	<%= @project.name %>
 
 	
+
+
+		<div class="col-md-6">
+				<div class="table-responsive">
+					<div class="well">
+						<table class="table table-bordered">
+							<caption><strong>Digestate volume & Estimated Nutrient Volumes</strong></caption>
+							<thead>
+								<tr>
+									<th>Feedstock</th>
+									<th>Tonnes</th>
+									<th>Nitrogen</th>
+									<th>Phosphorus</th>
+									<th>Potassium</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for calculation in @project.calculations %>
+									<tr class="success">
+										<td><%= calculation.feedstock.type %></td>
+										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_tonnes) %></td>
+										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_nitrogen) %></td>
+										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_phosphorus) %></td>
+										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_potash) %></td>
+									</tr>
+								<% end %>	
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
 </div>

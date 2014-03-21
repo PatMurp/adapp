@@ -2,8 +2,8 @@ class Calculation < ActiveRecord::Base
 	belongs_to :feedstock
 	belongs_to :project
 
-	validates :feedstock_id, presence: true
-	validates :tonnes, presence: true
+	#validates :feedstock_id, presence: true
+	#validates :tonnes, presence: true
 
 	# newest calculation id displayed at top of list on index page
 	scope :newest_first, lambda { order("calculations.created_at DESC") }

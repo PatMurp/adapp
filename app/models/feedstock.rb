@@ -1,5 +1,6 @@
 class Feedstock < ActiveRecord::Base
 	has_many :calculations
+
 	self.inheritance_column = nil
 
 	validates :type, presence: true
