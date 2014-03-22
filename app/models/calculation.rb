@@ -2,6 +2,7 @@ class Calculation < ActiveRecord::Base
 	belongs_to :feedstock
 	belongs_to :project
 
+
 	#validates :feedstock_id, presence: true
 	#validates :tonnes, presence: true
 
@@ -37,6 +38,12 @@ class Calculation < ActiveRecord::Base
 	def calc_mwh_ch4 (val1 = calc_gigjoules_ch4, val2 = 3.6)
 		(val1 / val2).round 2
 	end
+
+	# total tonnes
+	def sum_tonnes(tonnes)
+		calculate(:sum, tonnes)
+	end
+
 
 	# digestate calculations
 

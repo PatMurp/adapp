@@ -12,23 +12,19 @@
 			
 			<%#= Calculations form builder %>
 			<%= f.fields_for :calculations do |builder| %>
-				<div class="row">
-					<div class="col-md-3">
-						<%= builder.number_field :tonnes, class: "form-control", 
-						autofocus: true, placeholder: 'Enter Tonnes' %>
-					</div>
 
-					<div class="col-md-3">
-						<%= builder.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]}, 
-						{prompt: "Select a Feedstock"}, {class: "form-control"}  %><br>
-					</div>
-				</div>
+				<%= render 'calculation_fields', f: builder %>
+
 			<% end %>
+			<%= link_to_add_fields "Add feedstock field", f, :calculations %><br><br>
+
+			
 
 			<%= f.submit "Calculate", class: "btn btn-success btn-lg" %>
 			<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Reload Form</button>
 		
 	<% end %>
+
 </div>
 
 
