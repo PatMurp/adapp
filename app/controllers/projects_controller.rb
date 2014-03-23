@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :edit, :update, :destroy]
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :digestate]
 
   def index
   	@projects = Project.newest_first
@@ -40,6 +40,10 @@ class ProjectsController < ApplicationController
   def destroy
   	@project.destroy
   	redirect_to(:action => 'index')
+  end
+
+  def digestate
+    #@project = Project.find(params[:project_id])
   end
 
   private
