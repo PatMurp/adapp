@@ -8,8 +8,8 @@ class ProjectsController < ApplicationController
   def new
   	@project = Project.new
     @feedstocks = Feedstock.all
-    3.times { @project.calculations.build }
-    #@project.calculations.build
+    #3.times { @project.calculations.build }
+    @project.calculations.build
   end
 
   def show
@@ -43,7 +43,6 @@ class ProjectsController < ApplicationController
   end
 
   def digestate
-    #@project = Project.find(params[:project_id])
   end
 
   private

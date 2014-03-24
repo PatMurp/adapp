@@ -2,12 +2,12 @@
 	<fieldset>
 		<div class="col-md-3">
 			<%= f.number_field :tonnes, class: "form-control", 
-			autofocus: true, placeholder: 'Enter Tonnes' %>
+			 placeholder: 'Enter Tonnes', :required => true %>
 		</div>
 
 		<div class="col-md-3">
 			<%= f.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]}, 
-			{prompt: "Select a Feedstock"}, {class: "form-control"}  %><br>
+			{prompt: "Select a Feedstock"}, class: "form-control", :required => true %><br>
 		</div>
 
 		<div class="col-md-2">
