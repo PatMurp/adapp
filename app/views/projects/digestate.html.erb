@@ -30,11 +30,11 @@
 							</tbody>
 							<tfoot>
 							<tr class="warning">
-								<th>Totals</th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
+								<th>Total Tonnes</th>
+								<th class="text-right"><%= number_delimiter(@project.total_digestate_tonnes) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_digestate_nitrogen) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_digestate_phosphorus) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_digestate_potash) %></th>
 							</tr>
 						</tfoot>
 						</table>

@@ -41,15 +41,16 @@
 						<tfoot>
 							<tr class="warning">
 								<th>Totals</th>
-								<th><%#= calculation.sum_tonnes %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_tonnes) %></th>
 								<th></th>
+								<th class="text-right"><%= number_delimiter(@project.total_m3_biogas) %></th>
 								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
+								<th class="text-right"> <%= number_delimiter(@project.total_m3_ch4) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_kg_ch4) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_gigjoules_ch4) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_mwh_ch4) %></th>
 							</tr>
+							
 						</tfoot>
 					</table>
 				</div>

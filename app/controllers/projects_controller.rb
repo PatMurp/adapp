@@ -57,5 +57,6 @@ class ProjectsController < ApplicationController
   	params.require(:project).permit(:name,
                                     calculations_attributes: [:id, :tonnes, :feedstock_id, :_destroy])
   end
+
 end
 

@@ -39,11 +39,6 @@ class Calculation < ActiveRecord::Base
 		(val1 / val2).round 2
 	end
 
-	# total tonnes
-	def sum_tonnes(tonnes)
-		calculate(:sum, tonnes)
-	end
-
 
 	# digestate calculations
 
