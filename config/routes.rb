@@ -5,6 +5,7 @@ Adapp::Application.routes.draw do
 
   resources :projects do
       get 'digestate',on: :member
+      get 'chp', on: :member
   end
 
   resources :feedstocks
