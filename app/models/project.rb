@@ -67,4 +67,61 @@ class Project < ActiveRecord::Base
 		(calculations.collect(&:calc_digestate_potash).sum).round 3
 	end
 
+	# CHP calculations
+
+	# calculate usable heat
+	# fixed conversion rate 0.5
+	def chp_usable_heat(val1 = total_mwh_ch4, val2 = 0.5)
+		(val1 * val2).round 2
+	end
+
+	# calculate salable heat
+	# fixed conversion rate 0.5
+	def chp_salable_heat(val1= chp_usable_heat, val2 = 0.5)
+		(val1 * val2).round 2
+	end
+
+	# calculate potential income 
+	# €0.096 per kwh * 1000 for mwh
+	# ideally user should be able to set price
+	def calc_potential_income_heat(val1= chp_salable_heat, val2= 96)
+		(val1 * val2).round 2
+	end
+
+	# calculate usable electriciy
+	# fixed 30% value of available energy
+	def chp_potential_elec(val1 = total_mwh_ch4, val2 = 0.3)
+		(val1 * val2).round 2
+	end
+
+	# calculate salable electricity
+	# fixed 80% efficiency
+	def chp_salable_elec(val1= chp_potential_elec, val2= 0.8)
+		(val1 * val2).round 2
+	end
+
+	# calculate required generator size
+	# hours in year
+	def calc_generator_size(val1= chp_salable_elec, val2 = 364 * 24)
+		(val1 / val2).round 3
+	end
+
+	# price per MWh
+	# Ireland tariffs
+	# if generator size less than 0.5 price €150
+	# otherwise price is €130
+	def elec_price(val1= 150, val2= 130,  val3=calc_generator_size)
+		if val3 <= 0.5
+			val1
+		else
+			val2
+		end
+	end
+
+
+	# calculate potential elec income
+	def calc_potential_income_elec(val1= chp_salable_elec, val2= elec_price)
+		(val1 * val2).round 2
+	end
+
 end

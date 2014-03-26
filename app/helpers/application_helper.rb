@@ -20,4 +20,8 @@ module ApplicationHelper
 		number_to_percentage(number, precision: 0)
 	end
 
+	def number_euro number
+		number_to_currency(number, locale: :ie)
+	end
+
 end

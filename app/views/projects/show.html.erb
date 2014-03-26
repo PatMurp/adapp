@@ -3,7 +3,7 @@
 	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
 	
 
-	<h3><%= @project.name %> Project</h3>
+	<h3>Project Name: <%= @project.name %></h3>
 
 	<div class="col-md-9">
 		<div class="table-responsive">
@@ -58,5 +58,64 @@
 		</div>
 			<div class="clearfix"></div>
 		<%= link_to 'View Digestate Values', digestate_project_path(@project), :class => 'btn btn-info btn-lg'  %>
+
+
+		<div class="col-md-6">
+			<div class="table-responsive">
+				<div class="well">
+					<table class="table table-bordered">
+						<caption><strong>Combined Heat & Power Heat Potential</strong></caption>
+						<thead>
+							<tr>
+								<th>Potential Heat</th>
+								<th>Usable Heat</th>
+								<th>Salable Heat</th>
+								<th>price per MWH</th>
+								<th>Potential Income</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-right"><%= number_delimiter(@project.total_mwh_ch4) %></td>
+								<td class="text-right"><%= number_delimiter(@project.chp_usable_heat) %></td>
+								<td class="text-right"><%= number_delimiter(@project.chp_salable_heat) %></td>
+								<td class="text-right"><%= number_euro(96) %></td>
+								<td><%= number_euro(@project.calc_potential_income_heat) %></td>
+							</tr>
+						</tbody>	
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="table-responsive">
+				<div class="well">
+					<table class="table table-bordered">
+						<caption><strong>Combined Heat & Power Heat Electricity</strong></caption>
+						<thead>
+							<tr>
+								<th>Potential Elec</th>
+								<th>Salable Elec</th>
+								<th>Generator Size MW</th>
+								<th>Price MWH</th>
+								<th>Potential Income</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-right"><%= number_delimiter(@project.chp_potential_elec) %></td>
+								<td class="text-right"><%= number_delimiter(@project.chp_salable_elec) %></td>
+								<td class="text-right"><%= @project.calc_generator_size %></td>
+								<td class="text-right"><%= number_euro(@project.elec_price) %></td>
+								<td class="text-right"><%= number_euro(@project.calc_potential_income_elec) %></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>
