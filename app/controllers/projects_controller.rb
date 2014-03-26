@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-	before_action :set_project, only: [:show, :edit, :update, :destroy, :digestate, :chp]
+	before_action :set_project, only: [:show, :edit, :update, :destroy, :digestate, :chp, :upgrading]
 
   def index
   	@projects = Project.newest_first
@@ -46,6 +46,9 @@ class ProjectsController < ApplicationController
   end
 
   def chp
+  end
+
+  def upgrading
   end
 
   private

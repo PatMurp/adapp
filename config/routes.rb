@@ -4,8 +4,9 @@ Adapp::Application.routes.draw do
   #root "visitors#new"
 
   resources :projects do
-      get 'digestate',on: :member
-      get 'chp', on: :member
+  	member do
+      get 'digestate', 'chp', 'upgrading'
+    end
   end
 
   resources :feedstocks

@@ -118,9 +118,68 @@ class Project < ActiveRecord::Base
 		end
 	end
 
-
 	# calculate potential elec income
 	def calc_potential_income_elec(val1= chp_salable_elec, val2= elec_price)
+		(val1 * val2).round 2
+	end
+
+	# upgrading calculations
+
+	# calculate energy consumption MWh
+	# assumed 3.1
+	def calc_upg_energy_consump(val1= total_m3_ch4, val2= 3.15 / 1000)
+		(val1 * val2).round 2
+	end
+
+	# calculate upgrading ch4 loss
+	# fixed value 3.35%
+	def calc_upg_ch4_loss(val1= total_m3_ch4, val2= 0.0335)
+		(val1 * val2).round 2
+	end
+
+	# calculate upgraded ch4
+	def calc_upg_ch4(val1=total_m3_ch4, val2=  calc_upg_ch4_loss)
+		(val1 - val2).round 2
+	end
+
+	# convert upgraded methane m3 to gigajoules
+	# fixed conversion rate 
+	def calc_upg_gigjoules_ch4 (val1 = 0.03778, val2 = calc_upg_ch4)
+		(val1 * val2).round 2 
+	end
+
+	# calculate ch4 upgraded per hour
+	def calc_upg_ch4_per_hour(val1= calc_upg_ch4, val2= 364 * 24)
+		(val1 / val2).round 2
+	end
+
+	# calculate potential vehicle fuel value
+	def calc_potential_upg_income_vehicle(val1= calc_upg_ch4, val2= 0.81)
+		(val1 * val2).round 2
+	end
+
+	# calculate potential number of buses fueled
+	def calc_potential_buses_fueled(val1= calc_upg_ch4, val2= 27500)
+		(val1 / val2).round 1
+	end
+
+	# calculate potential number of refuse trucks fueled
+	def calc_potential_wtruck_fueled(val1= calc_upg_ch4, val2= 35750)
+		(val1 / val2).round 1
+	end
+
+	# calculate potential number of refuse trucks fueled
+	def calc_potential_cars_fueled(val1= calc_upg_ch4, val2= 1035)
+		(val1 / val2).round 1
+	end
+
+	# calculate therms of upgraded methane
+	def calc_upg_therms(val1= calc_upg_gigjoules_ch4, val2= 9.4781708)
+		(val1 * val2).round 2
+	end
+
+	# calculate potential value of wholesale gas grid sales
+	def calc_potential_gas_grid_income(val1= calc_upg_therms, val2= 0.96)
 		(val1 * val2).round 2
 	end
 

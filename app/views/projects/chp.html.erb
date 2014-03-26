@@ -23,7 +23,7 @@
 								<td class="text-right"><%= number_delimiter(@project.chp_usable_heat) %></td>
 								<td class="text-right"><%= number_delimiter(@project.chp_salable_heat) %></td>
 								<td class="text-right"><%= number_euro(96) %></td>
-								<td><%= number_euro(@project.calc_potential_income_heat) %></td>
+								<td class="text-right"><%= number_euro(@project.calc_potential_income_heat) %></td>
 							</tr>
 						</tbody>	
 					</table>
@@ -35,7 +35,7 @@
 			<div class="table-responsive">
 				<div class="well">
 					<table class="table table-bordered">
-						<caption><strong>Combined Heat & Power Heat Electricity</strong></caption>
+						<caption><strong>Combined Heat & Power Electricity Potential</strong></caption>
 						<thead>
 							<tr>
 								<th>Potential Elec</th>
@@ -60,5 +60,6 @@
 		</div>
 		<%= link_to 'View Biogas Output', project_path(@project), :class => 'btn btn-info btn-lg' %>
 		<%= link_to 'View Digestate Values', digestate_project_path(@project), :class => 'btn btn-info btn-lg'  %>
+		<%= link_to 'View Upgrading Values', upgrading_project_path(@project), :class => 'btn btn-info btn-lg'  %>
 	</div>
 </div>
