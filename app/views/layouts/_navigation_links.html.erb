@@ -1,4 +1,10 @@
 <%# add navigation links to this file %>
 <%# active link is shown  %>
-<li><% link_to 'Feedstocks', new_feedstock_path %></li>
+<li class="<%= 'active' if current_page?(projects_path) %>">
+	<%= link_to 'Projects List', projects_path %></li>
+<li class="<%= 'active' if current_page?(new_project_path) %>">
+	<%= link_to 'New Project', new_project_path %></li>
+
+
+
 

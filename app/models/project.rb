@@ -123,6 +123,11 @@ class Project < ActiveRecord::Base
 		(val1 * val2).round 2
 	end
 
+	# calculate total chp potential income
+	def calc_total_potential_income_chp(val1= calc_potential_income_heat, val2= calc_potential_income_elec)
+		val1 + val2
+	end
+
 	# upgrading calculations
 
 	# calculate energy consumption MWh

@@ -11,6 +11,7 @@ gem 'bootstrap-sass', '>= 3.0.0.0'
 gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form'
+gem 'chartkick', '~> 1.2.4'
 
 group :development do
   gem 'better_errors'
