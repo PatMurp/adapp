@@ -1,9 +1,26 @@
-<div class="container"><br>
-	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary' %>
+<div class="container">
+	
 
 	<h3>Project Name: <%= @project.name %></h3>
 
-	<div class="col-md-6">
+	<div class="row">
+		<div class="col-md-6">
+			<%= pie_chart @project.calculations.map { |calculation|
+				[calculation.feedstock.type, calculation.calc_digestate_tonnes] 
+			}  %>
+			<p class="text-center">Potential Digestate Tonnes</p>
+		</div>
+			<div class="col-md-6">
+				<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
+													"Phosphorus" => @project.total_digestate_phosphorus,
+													"Potash" => @project.total_digestate_potash
+				}) %>
+				<p class="text-center">Tonnes Potential Nutrients</p>
+		</div>
+	</div><br>
+
+	<div class="row">
+		<div class="col-md-6">
 				<div class="table-responsive">
 					<div class="well">
 						<table class="table table-bordered">
@@ -41,9 +58,19 @@
 					</div>
 				</div>
 			</div>
-				<div class="clearfix"></div>
+
+			
+
+		</div> 
+
+		<div class="clearfix"></div>
 				<%= link_to 'View Biogas Output', project_path(@project), :class => 'btn btn-info btn-lg' %>
 				<%= link_to 'View CHP Values', chp_project_path(@project), :class => 'btn btn-info btn-lg'  %>
 				<%= link_to 'View Upgrading Values', upgrading_project_path(@project), :class => 'btn btn-info btn-lg'  %>
-		</div> 
+	</div>
+
+	
+	
+
 </div>
+

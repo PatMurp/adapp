@@ -5,22 +5,31 @@
 
 	<h3>Project Name: <%= @project.name %></h3>
 
+	<!-- display 2 bar charts in a row -->
 	<div class="row">
 		<div class="col-md-6">
 			<%= pie_chart @project.calculations.map { |calculation|
-				[calculation.feedstock.type, calculation.tonnes]
-			} %>
-			<h4 class="text-center">Feedstock Volume</h4>
+				[calculation.feedstock.type, calculation.tonnes] 
+			}, width: "250px", height: "250px"  %>
+			<p class="text-center">Feedstock Volume Tonnes</p>
 		</div>
 
-		<div class="col-md-6">
+		<div class="col-md-6 text-center">
 			<%= pie_chart @project.calculations.map { |calculation|
-				[calculation.feedstock.type, calculation.calc_m3_ch4]
-			}  %>
-			<h4 class="text-center">Methane Potential</h4><br>
+				[calculation.feedstock.type, calculation.calc_m3_biogas]
+			}, width: "250px", height: "250px"   %>
+			<p class="text-center">Biogas Potential m&#179;</p><br>
 		</div>
 	</div>
 
+	<!-- push bar chart into center -->
+	<div class="col-md-6 col-md-push-3">
+		<%= pie_chart @project.calculations.map { |calculation|
+			[calculation.feedstock.type, calculation.calc_m3_ch4]
+		}, width: "250px", height: "250px"  %>
+		<p class="text-center">Methane Potential m&#179;</p><br>
+	</div>
+	
 	<div class="col-md-9">
 		<div class="table-responsive">
 				<div class="well">

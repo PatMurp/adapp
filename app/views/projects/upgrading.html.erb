@@ -1,8 +1,44 @@
-<div class="container"><br>
-
-	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary' %>
+<div class="container">
 
 	<h3>Project Name: <%= @project.name %></h3>
+
+	<!-- Dynamic message displayed depending biogas upgraded per hour -->
+	<h3 class="text-center">
+	<% if @project.calc_upg_ch4_per_hour < 250 %>
+		<p class="text-danger ">Upgrading biogas is not feasible with chosen feedstock volumes</p>
+	<% elsif @project.calc_upg_ch4_per_hour < 500 %>
+		<p class="text-warning">Upgrading biogas is marginal with chosen feedstock volumes</p>
+	<% else @project.calc_upg_ch4_per_hour >= 500 %>
+		<p class="text-success">Upgrading biogas is feasible</p>
+	<% end %>
+	</h3>
+	
+
+
+	<div class="row">
+		<div class="col-md-4">
+				<%= column_chart({"Available Methane" => @project.total_m3_ch4,
+													"Upgraded Methane" => @project.calc_upg_ch4 
+				}) %>
+				<p class="text-center">m&#179; Methane</p>
+		</div>
+		<div class="col-md-4">
+				<%= column_chart({"Vehicle Fuel" => @project.calc_potential_upg_income_vehicle,
+													"Gas Grid" => @project.calc_potential_gas_grid_income 
+				}) %>
+				<p class="text-center">Potential Value €</p>
+		</div>
+		<div class="col-md-3 col-md-push-1">
+			<br>
+			<p class="text-info"><strong>Potentially can fuel:</strong><br><br>
+				<%= @project.calc_potential_buses_fueled %> busses or<br><br>
+				<%= @project.calc_potential_wtruck_fueled %> refuse trucks or<br><br>
+				<%= @project.calc_potential_cars_fueled %> private cars or<br><br>
+				<%= @project.calc_potential_homes_fueled %> households
+			</p>
+				
+		</div>
+	</div>
 
 	<div class="col-md-8">
 		<div class="table-responsive">
@@ -20,13 +56,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="warning">
-							<td class="text-right"><%= number_delimiter(@project.total_m3_ch4) %></td>
-							<td class="text-right"><%= number_delimiter(@project.calc_upg_energy_consump) %></td>
-							<td class="text-right"><%= number_delimiter(@project.calc_upg_ch4_loss) %></td>
-							<td class="text-right"><%= number_delimiter(@project.calc_upg_ch4) %></td>
-							<td class="text-right"><%= number_delimiter(@project.calc_upg_gigjoules_ch4) %></td>
-							<td class="text-right"><%= number_delimiter(@project.calc_upg_ch4_per_hour) %></td>
+						<tr class="warning class-right">
+							<td><%= number_delimiter(@project.total_m3_ch4) %></td>
+							<td><%= number_delimiter(@project.calc_upg_energy_consump) %></td>
+							<td><%= number_delimiter(@project.calc_upg_ch4_loss) %></td>
+							<td><%= number_delimiter(@project.calc_upg_ch4) %></td>
+							<td><%= number_delimiter(@project.calc_upg_gigjoules_ch4) %></td>
+							<td><%= number_delimiter(@project.calc_upg_ch4_per_hour) %></td>
 						</tr>
 					</tbody>
 				</table>
@@ -37,7 +73,7 @@
 	
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-7">
 			<div class="table-responsive">
 				<div class="well">
 					<table class="table table-bordered">
@@ -52,12 +88,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="warning">
-								<td class="text-right"><%= number_euro(0.81) %></td>
-								<td class="text-right"><%= number_euro(@project.calc_potential_upg_income_vehicle) %></td>
-								<td class="text-right"><%= number_delimiter(@project.calc_potential_buses_fueled) %></td>
-								<td class="text-right"><%= number_delimiter(@project.calc_potential_wtruck_fueled) %></td>
-								<td class="text-right"><%= number_delimiter(@project.calc_potential_cars_fueled) %></td>
+							<tr class="warning text-right">
+								<td><%= number_euro(0.81) %></td>
+								<td><%= number_euro(@project.calc_potential_upg_income_vehicle) %></td>
+								<td><%= number_delimiter(@project.calc_potential_buses_fueled) %></td>
+								<td><%= number_delimiter(@project.calc_potential_wtruck_fueled) %></td>
+								<td><%= number_delimiter(@project.calc_potential_cars_fueled) %></td>
 							</tr>
 						</tbody>
 					</table>
@@ -70,7 +106,7 @@
 			<%= link_to 'View CHP Values', chp_project_path(@project), :class => 'btn btn-info btn-lg'  %>
 			<%= link_to 'View Digestate Values', digestate_project_path(@project), :class => 'btn btn-info btn-lg'  %>
 		</div>
-			<div class="col-md-4">
+			<div class="col-md-5">
 				<div class="well">
 					<div class="table-responsive">
 						<table class="table table-bordered">
@@ -80,13 +116,15 @@
 									<th>Therms</th>
 									<th>Therm price</th>
 									<th>Potential Value</th>
+									<th>Households fueled</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="warning">
-									<td class="text-right"><%= number_delimiter(@project.calc_upg_therms) %></td>
-									<td class="text-right"><%= number_euro(0.96) %></td>
-									<td class="text-right"><%= number_euro(@project.calc_potential_gas_grid_income) %></td>
+								<tr class="warning text-right">
+									<td ><%= number_delimiter(@project.calc_upg_therms) %></td>
+									<td><%= number_euro(0.96) %></td>
+									<td><%= number_euro(@project.calc_potential_gas_grid_income) %></td>
+									<td><%= @project.calc_potential_homes_fueled %></td>
 								</tr>
 							</tbody>
 						</table>

@@ -188,4 +188,15 @@ class Project < ActiveRecord::Base
 		(val1 * val2).round 2
 	end
 
+	# calculate potential mwh upgraded methane
+	def calc_upg_mwh_ch4(val1= calc_upg_gigjoules_ch4, val2= 3.6)
+		(val1 / val2).round 2
+	end
+
+	# calculate potential number of private homes fueled
+	# assume annual gas use is 13800 kwh or 1.38 mwh
+	def calc_potential_homes_fueled(val1= calc_upg_mwh_ch4, val2= 13.8)
+		(val1 / val2).round 1
+	end
+
 end

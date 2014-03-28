@@ -1,7 +1,24 @@
-<div class="container"><br>
-	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary' %>
+<div class="container">
 
 	<h3>Project Name: <%= @project.name %></h3>
+
+	<div class="row">
+		<div class="col-md-6">
+				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
+													"Salable Heat" => @project.chp_salable_heat, 
+													"Generated Electricity" => @project.chp_salable_elec
+				}) %>
+				<p class="text-center">MWH CHP Energy</p>
+		</div>
+		<div class="col-md-6">
+				<%= column_chart({"Heat Value" => @project.calc_potential_income_heat,
+													"Electricity Value" => @project.calc_potential_income_elec,
+													"Combined Value" => @project.calc_total_potential_income_chp
+													
+				}) %>
+				<p class="text-center">Potential Value € Republic of Ireland Tariffs</p>
+		</div>
+	</div><br>
 
 	<div class="col-md-6">
 			<div class="table-responsive">
@@ -18,12 +35,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="warning">
-								<td class="text-right"><%= number_delimiter(@project.total_mwh_ch4) %></td>
-								<td class="text-right"><%= number_delimiter(@project.chp_usable_heat) %></td>
-								<td class="text-right"><%= number_delimiter(@project.chp_salable_heat) %></td>
-								<td class="text-right"><%= number_euro(96) %></td>
-								<td class="text-right"><%= number_euro(@project.calc_potential_income_heat) %></td>
+							<tr class="warning text-right">
+								<td><%= number_delimiter(@project.total_mwh_ch4) %></td>
+								<td><%= number_delimiter(@project.chp_usable_heat) %></td>
+								<td><%= number_delimiter(@project.chp_salable_heat) %></td>
+								<td><%= number_euro(96) %></td>
+								<td><%= number_euro(@project.calc_potential_income_heat) %></td>
 							</tr>
 						</tbody>	
 					</table>
@@ -46,12 +63,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr  class="warning">
-								<td class="text-right"><%= number_delimiter(@project.chp_potential_elec) %></td>
-								<td class="text-right"><%= number_delimiter(@project.chp_salable_elec) %></td>
-								<td class="text-right"><%= @project.calc_generator_size %></td>
-								<td class="text-right"><%= number_euro(@project.elec_price) %></td>
-								<td class="text-right"><%= number_euro(@project.calc_potential_income_elec) %></td>
+							<tr  class="warning text-right">
+								<td><%= number_delimiter(@project.chp_potential_elec) %></td>
+								<td><%= number_delimiter(@project.chp_salable_elec) %></td>
+								<td><%= @project.calc_generator_size %></td>
+								<td><%= number_euro(@project.elec_price) %></td>
+								<td><%= number_euro(@project.calc_potential_income_elec) %></td>
 							</tr>
 						</tbody>
 						<tfoot>
