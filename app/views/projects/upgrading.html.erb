@@ -2,14 +2,19 @@
 
 	<h3>Project Name: <%= @project.name %></h3>
 
-	<!-- Dynamic message displayed depending biogas upgraded per hour -->
+	<!-- Dynamic alerts displayed depending biogas upgraded per hour -->
 	<h3 class="text-center">
 	<% if @project.calc_upg_ch4_per_hour < 250 %>
-		<p class="text-danger ">Upgrading biogas is not feasible with chosen feedstock volumes</p>
+		<p class="alert alert-danger alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Upgrading biogas is not feasible with chosen feedstock volumes</p>
 	<% elsif @project.calc_upg_ch4_per_hour < 500 %>
-		<p class="text-warning">Upgrading biogas is marginal with chosen feedstock volumes</p>
+		<p class="alert alert-warning alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			Upgrading biogas is marginal with chosen feedstock volumes</p>
 	<% else @project.calc_upg_ch4_per_hour >= 500 %>
-		<p class="text-success">Upgrading biogas is feasible</p>
+		<p class="alert alert-success alert-dismissable">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			Upgrading biogas is feasible</p>
 	<% end %>
 	</h3>
 	
@@ -28,16 +33,36 @@
 				}) %>
 				<p class="text-center">Potential Value €</p>
 		</div>
+
+		<!-- 3 column panel to right of page -->
 		<div class="col-md-3 col-md-push-1">
-			<br>
-			<p class="text-info"><strong>Potentially can fuel:</strong><br><br>
-				<%= @project.calc_potential_buses_fueled %> busses or<br><br>
-				<%= @project.calc_potential_wtruck_fueled %> refuse trucks or<br><br>
-				<%= @project.calc_potential_cars_fueled %> private cars or<br><br>
-				<%= @project.calc_potential_homes_fueled %> households
-			</p>
+			<div class=" panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">Biogas Upgrading</h4>
+				</div>
 				
+					<div class="panel-body">
+						Biogas upgrading is a process which removes carbon and other gasses
+						thereby increasing methane content. Upgraded methane can be used as a 
+						vehicle fuel or in the gas grid.<br><br>
+
+						Upgraded per hour = <%= @project.calc_upg_ch4_per_hour %><br><br>
+						Feasible greater than 500<br>
+						Marginal between 500 and 250<br>
+						Not feasible below 250
+
+						<h5>Potentially can fuel</h5>
+						
+						<%= @project.calc_potential_buses_fueled %> busses or<br>
+						<%= @project.calc_potential_wtruck_fueled %> refuse trucks or<br>
+						<%= @project.calc_potential_cars_fueled %> private cars or<br>
+						<%= @project.calc_potential_homes_fueled %> households
+						
+					</div>
+				</p>	
+			</div>
 		</div>
+
 	</div>
 
 	<div class="col-md-8">

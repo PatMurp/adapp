@@ -3,20 +3,44 @@
 	<h3>Project Name: <%= @project.name %></h3>
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-4">
 				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
 													"Salable Heat" => @project.chp_salable_heat, 
 													"Generated Electricity" => @project.chp_salable_elec
 				}) %>
 				<p class="text-center">MWH CHP Energy</p>
 		</div>
-		<div class="col-md-6">
+
+		<div class="col-md-4">
 				<%= column_chart({"Heat Value" => @project.calc_potential_income_heat,
 													"Electricity Value" => @project.calc_potential_income_elec,
 													"Combined Value" => @project.calc_total_potential_income_chp
 													
 				}) %>
 				<p class="text-center">Potential Value € Republic of Ireland Tariffs</p>
+		</div>
+
+		<!-- 3 column panel to right of page -->
+		<div class="col-md-3 col-md-push-1">
+			<div class=" panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">Combined Heat & Power (CHP)</h4>
+				</div>
+				
+					<div class="panel-body">
+						CHP generation is the most common use for biogas. CHP
+						plants have a maximum efficiency of 90% and produce 35%
+						electricty and 65% heat.
+
+						<h5>Calculation Assumptions</h5>
+						50% of heat is used in digestor<br>
+						Heat price MWH = <%= number_euro(96) %><br>
+						Electriciy price MWH = <%=  number_euro(@project.elec_price) %>
+						
+						
+					</div>
+				</p>	
+			</div>
 		</div>
 	</div><br>
 
