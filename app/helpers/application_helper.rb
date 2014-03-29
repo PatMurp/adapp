@@ -20,8 +20,18 @@ module ApplicationHelper
 		number_to_percentage(number, precision: 0)
 	end
 
+	# format numbers with euro symbol
 	def number_euro number
 		number_to_currency(number, locale: :ie)
 	end
+
+	# navbar active link is highlighed
+	def is_active?(link_path)
+	  if current_page?(link_path)
+	    "active"
+	  else
+	    ""
+	  end
+ end
 
 end

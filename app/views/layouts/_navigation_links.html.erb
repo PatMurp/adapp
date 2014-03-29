@@ -1,10 +1,26 @@
 <%# add navigation links to this file %>
 <%# active link is shown  %>
-<li class="<%= 'active' if current_page?(projects_path) %>">
-	<%= link_to 'Projects List', projects_path %></li>
-<li class="<%= 'active' if current_page?(new_project_path) %>">
-	<%= link_to 'New Project', new_project_path %></li>
+<% if user_signed_in? %>
+	<li class="<%= is_active?(projects_path) %>"><%= link_to 'Projects', projects_path %></li>
+  <li class="<%= is_active?(new_project_path) %>"><%= link_to 'New Project', new_project_path %></li>
+	<li class="<%= is_active?(edit_user_registration_path) %>">
+    <%= link_to 'Edit  User profile', edit_user_registration_path %></li>
+	<li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+<% else %>
+	<li class="<%= is_active?(new_user_registration_path) %>">
+    <%= link_to "Sign up", new_user_registration_path %></li>
+	<li  class="<%= is_active?(new_user_session_path) %>">
+    <%= link_to "Login", new_user_session_path  %></li>
+<% end %>
 
-
-
-
+<!-- 
+<p class="pull-right">
+  <% if user_signed_in? %>
+    Logged in as <strong><%= current_user.email %></strong>.
+    <%= link_to 'Edit profile', edit_user_registration_path %> |
+    <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+  <% else %>
+    <%= link_to "Sign up", new_user_registration_path %> |
+    <%= link_to "Login", new_user_session_path  %>
+  <% end %>
+</p> -->
