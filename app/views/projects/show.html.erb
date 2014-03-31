@@ -1,6 +1,7 @@
 <div class="container"><br>
-	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary' %>
+	<%= link_to '<< View Project Report', report_project_path(@project), :class => 'btn btn-info' %>
 	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
+	<%= link_to 'View Digestate Values >>', digestate_project_path(@project), :class => 'btn btn-info'%>
 	
 
 	<h3>Project Name: <%= @project.name %></h3>
@@ -28,64 +29,6 @@
 			[calculation.feedstock.type, calculation.calc_m3_ch4]
 		}, width: "250px", height: "250px"  %>
 		<p class="text-center">Methane Potential m&#179;</p><br>
-	</div>
-	
-	<div class="col-md-9">
-		<div class="table-responsive">
-				<div class="well">
-					<table class="table table-bordered">
-						<caption><strong>Biogas Output & Energy Values</strong></caption>
-						<thead>
-							<tr>
-								<th>Feedstock</th>
-								<th>Tonnes</th>
-								<th>biogas/tonne</th>
-								<th>m&#179; biogas</th>
-								<th>% CH<sub>4</sub></th>
-								<th>m&#179; CH<sub>4</th>
-								<th>kg CH<sub>4</sub></th>
-								<th>Gigajoules</th>
-								<th>MWH</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% for calculation in @project.calculations %>
-								<tr class="success">
-									<td><%= calculation.feedstock.type %></td>
-									<td class="text-right"><%= number_delimiter(calculation.tonnes) %></td>
-									<td class="text-right"><%= calculation.feedstock.biogas_per_tonne %></td>
-									<td class="text-right"><%= number_delimiter(calculation.calc_m3_biogas) %></td>
-									<td class="text-right"><%= number_percent(calculation.feedstock.methane_percent * 100) %></td>
-									<td class="text-right"><%= number_delimiter(calculation.calc_m3_ch4) %></td>
-									<td class="text-right"><%= number_delimiter(calculation.calc_kg_ch4) %></td>
-									<td class="text-right"><%= number_delimiter(calculation.calc_gigjoules_ch4) %></td>
-									<td class="text-right"><%= number_delimiter(calculation.calc_mwh_ch4) %></td>
-								</tr>
-							<% end %>
-						</tbody>
-						<tfoot>
-							<tr class="warning">
-								<th>Totals</th>
-								<th class="text-right"><%= number_delimiter(@project.total_tonnes) %></th>
-								<th></th>
-								<th class="text-right"><%= number_delimiter(@project.total_m3_biogas) %></th>
-								<th></th>
-								<th class="text-right"> <%= number_delimiter(@project.total_m3_ch4) %></th>
-								<th class="text-right"><%= number_delimiter(@project.total_kg_ch4) %></th>
-								<th class="text-right"><%= number_delimiter(@project.total_gigjoules_ch4) %></th>
-								<th class="text-right"><%= number_delimiter(@project.total_mwh_ch4) %></th>
-							</tr>
-							
-						</tfoot>
-					</table>
-				</div>
-			</div>
-		</div>
-			<div class="clearfix"></div>
-		<%= link_to 'View Digestate Values', digestate_project_path(@project), :class => 'btn btn-info btn-lg'  %>
-		<%= link_to 'View CHP Values', chp_project_path(@project), :class => 'btn btn-info btn-lg'  %>
-		<%= link_to 'View Upgrading Values', upgrading_project_path(@project), :class => 'btn btn-info btn-lg'  %>
-
 	</div>
 </div>
 

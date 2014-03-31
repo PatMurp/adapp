@@ -6,7 +6,7 @@ Adapp::Application.routes.draw do
 
   resources :projects do
   	member do
-      get 'digestate', 'chp', 'upgrading'
+      get 'digestate', 'chp', 'upgrading', 'report'
     end
   end
 

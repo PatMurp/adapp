@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-	before_action :set_project, only: [:show, :edit, :update, :destroy, :digestate, :chp, :upgrading]
+	before_action :set_project, only: [:show, :edit, :update, :destroy, 
+                :digestate, :chp, :upgrading, :report]
 
   def index
   	#@projects = Project.newest_first
@@ -42,6 +43,9 @@ class ProjectsController < ApplicationController
   def destroy
   	@project.destroy
   	redirect_to(:action => 'index')
+  end
+
+  def report
   end
 
   def digestate

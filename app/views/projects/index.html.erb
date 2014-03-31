@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>My Projects List</h2>
+	<h2><%= current_user.email %>'s Projects List</h2>
 
 	<div class="col-md-5">
 		<%= link_to 'Create a New Project', new_project_path, :class => 'btn btn-primary' %> <br><br>
@@ -11,13 +11,15 @@
 						<th></th>
 						<th></th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @projects.each do |project| %>
 						<tr>
 							<td><%= project.name %></td>
-							<td><%= link_to 'View Biogas Output', project, :class => 'btn btn-success btn-xs' %></td>
+							<td><%= link_to 'View Biogas Output',project, :class => 'btn btn-success btn-xs' %></td>
+							<td><%= link_to 'Project Report', report_project_path(project), :class => 'btn btn-primary btn-xs' %></td>
         			<td><%= link_to 'Edit', edit_project_path(project), :class => 'btn btn-info btn-xs'  %></td>
         			<td><%= link_to 'Destroy', project, method: :delete, :class => 'btn btn-danger btn-xs', data: { confirm: 'Are you sure?' } %></td>
 						</tr>

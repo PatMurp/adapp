@@ -1,76 +1,40 @@
-<div class="container">
-	
+<div class="container"><br>
+
+	<%= link_to '<< View Biogas Output', project_path(@project), :class => 'btn btn-info' %>
+	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary' %>
+	<%= link_to 'View CHP Values >>', chp_project_path(@project), :class => 'btn btn-info'  %>
+	<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-info' %>
 
 	<h3>Project Name: <%= @project.name %></h3>
 
-	<div class="row">
-		<div class="col-md-6">
+	
+		<div class="col-md-5">
 			<%= pie_chart @project.calculations.map { |calculation|
 				[calculation.feedstock.type, calculation.calc_digestate_tonnes] 
-			}  %>
+			}, width: "250px"  %>
 			<p class="text-center">Potential Digestate Tonnes</p>
 		</div>
-			<div class="col-md-6">
+			<div class="col-md-4">
 				<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
 													"Phosphorus" => @project.total_digestate_phosphorus,
 													"Potash" => @project.total_digestate_potash
 				}) %>
 				<p class="text-center">Tonnes Potential Nutrients</p>
 		</div>
-	</div><br>
 
-	<div class="row">
-		<div class="col-md-6">
-				<div class="table-responsive">
-					<div class="well">
-						<table class="table table-bordered">
-							<caption><strong>Digestate volume & Estimated Nutrient Volumes</strong></caption>
-							<thead>
-								<tr>
-									<th>Feedstock</th>
-									<th>Tonnes</th>
-									<th>Nitrogen</th>
-									<th>Phosphorus</th>
-									<th>Potassium</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% for calculation in @project.calculations %>
-									<tr class="success">
-										<td><%= calculation.feedstock.type %></td>
-										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_tonnes) %></td>
-										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_nitrogen) %></td>
-										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_phosphorus) %></td>
-										<td class="text-right"><%= number_delimiter(calculation.calc_digestate_potash) %></td>
-									</tr>
-								<% end %>	
-							</tbody>
-							<tfoot>
-							<tr class="warning">
-								<th>Total Tonnes</th>
-								<th class="text-right"><%= number_delimiter(@project.total_digestate_tonnes) %></th>
-								<th class="text-right"><%= number_delimiter(@project.total_digestate_nitrogen) %></th>
-								<th class="text-right"><%= number_delimiter(@project.total_digestate_phosphorus) %></th>
-								<th class="text-right"><%= number_delimiter(@project.total_digestate_potash) %></th>
-							</tr>
-						</tfoot>
-						</table>
-					</div>
+		<div class="col-md-3">
+			<div class=" panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">Digestate</h4>
 				</div>
+				
+				<div class="panel-body">
+					Digestate is the material remaining after anaerobic digestion. AD
+					increases the availibility of nutrients. Digestate can be used as
+					a replacement for mineral fertilizers.
+				</div>	
 			</div>
-
-			
-
-		</div> 
-
-		<div class="clearfix"></div>
-				<%= link_to 'View Biogas Output', project_path(@project), :class => 'btn btn-info btn-lg' %>
-				<%= link_to 'View CHP Values', chp_project_path(@project), :class => 'btn btn-info btn-lg'  %>
-				<%= link_to 'View Upgrading Values', upgrading_project_path(@project), :class => 'btn btn-info btn-lg'  %>
+		</div>
 	</div>
-
-	
-	
-
 </div>
 
