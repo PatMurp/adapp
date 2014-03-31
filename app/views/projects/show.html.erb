@@ -5,31 +5,57 @@
 	
 
 	<h3>Project Name: <%= @project.name %></h3>
+	
 
-	<!-- display 2 bar charts in a row -->
-	<div class="row">
-		<div class="col-md-6">
-			<%= pie_chart @project.calculations.map { |calculation|
-				[calculation.feedstock.type, calculation.tonnes] 
-			}, width: "250px", height: "250px"  %>
-			<p class="text-center">Feedstock Volume Tonnes</p>
-		</div>
-
-		<div class="col-md-6 text-center">
-			<%= pie_chart @project.calculations.map { |calculation|
-				[calculation.feedstock.type, calculation.calc_m3_biogas]
-			}, width: "250px", height: "250px"   %>
-			<p class="text-center">Biogas Potential m&#179;</p><br>
-		</div>
+	<!-- feedstock percentage bar chart -->
+	<div class="col-md-8">
+		<%= pie_chart @project.calculations.map { |calculation|
+			[calculation.feedstock.type, calculation.tonnes] 
+		}   %>
+		<p class="text-center">Feedstock Volume Tonnes</p>
 	</div>
 
-	<!-- push bar chart into center -->
-	<div class="col-md-6 col-md-push-3">
+	
+
+	<div class="col-md-3 col-md-push-1">
+			<div class=" panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">Biogas</h4>
+				</div>
+				
+				<div class="panel-body">
+					In anaerobic digestion biogas is produced from the
+					breakdown of organic materials by microorganisms.<br><br>
+					Methane is the combustable part of biogas. It has an 
+					energy value of 37.78 MJ/m&#179;<br>
+					<h5>Project Totals</h5>
+					Feedstock tonnes = <%= number_delimiter(@project.total_tonnes) %><br>
+					Biogas m&#179; = <%= number_delimiter(@project.total_m3_biogas) %><br>
+					Methane  m&#179; = <%= number_delimiter(@project.total_m3_ch4) %>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+
+	<!-- biogas percentage bar chart -->
+	<div class="col-md-6 text-center">
+		<%= pie_chart @project.calculations.map { |calculation|
+			[calculation.feedstock.type, calculation.calc_m3_biogas]
+		}   %>
+		<p class="text-center">Biogas Potential m&#179;</p><br>
+	</div>
+	
+
+	<!-- methane percentage bar chart  -->
+	<div class="col-md-6">
 		<%= pie_chart @project.calculations.map { |calculation|
 			[calculation.feedstock.type, calculation.calc_m3_ch4]
-		}, width: "250px", height: "250px"  %>
+		}  %>
 		<p class="text-center">Methane Potential m&#179;</p><br>
 	</div>
+
+
 </div>
 
 
