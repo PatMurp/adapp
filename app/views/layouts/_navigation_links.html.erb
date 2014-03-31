@@ -3,10 +3,14 @@
 <% if user_signed_in? %>
 	<li class="<%= is_active?(projects_path) %>"><%= link_to 'View Projects', projects_path %></li>
   <li class="<%= is_active?(new_project_path) %>"><%= link_to 'Create New Project', new_project_path %></li>
-
 	<li class="<%= is_active?(edit_user_registration_path) %>">
     <%= link_to 'Edit  User profile', edit_user_registration_path %></li>
 	<li><%= link_to "Logout", destroy_user_session_path, method: :delete  %></li>
+  <% if current_user.is_admin? %>
+    <li><%= link_to 'Admin', admin_dashboard_path %></li>
+  <% else %>
+    <li></li>
+  <% end %>
 <% else %>
 	<li class="<%= is_active?(new_user_registration_path) %>">
     <%= link_to "Sign up", new_user_registration_path %></li>
@@ -15,10 +19,4 @@
 <% end %>
 
 
-<% #if current_page?(project_path) %>
-    <li><%#= link_to "Biogas" %></li>
-<%# elsif current_page?(digestate_project_path) %>
-    <li><%#= link_to "Digestate" %></li>
-<%# else %>
-    <li></li>
-<%# end %>
+

@@ -4,7 +4,6 @@ class ProjectsController < ApplicationController
                 :digestate, :chp, :upgrading, :report]
 
   def index
-  	#@projects = Project.newest_first
     @projects = current_user.projects.newest_first
   end
 
