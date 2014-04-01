@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
 
 	
 	validates :name, presence: true
-	validates :name, uniqueness: { case_sensitive: false }
+	#validates :name, uniqueness: { case_sensitive: false }
 
 	# newest project is displayed at top of list on index page
 	scope :newest_first, lambda { order("projects.created_at DESC") }

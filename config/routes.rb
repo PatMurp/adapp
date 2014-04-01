@@ -3,7 +3,6 @@ Adapp::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   root :to => 'visitors#new'
-  #root "visitors#new"
 
   resources :projects do
   	member do
