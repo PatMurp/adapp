@@ -83,6 +83,13 @@ class Project < ActiveRecord::Base
 		(val1 * val2).round 2
 	end
 
+	# calculate carbon displaced for chp heat
+	# fixed value primary factor 1.1
+	# fixed value emission factor 0.272
+	def calc_carbon_savings_from_chp_heat(val1= chp_salable_heat, val2= 1.1, val3= 0.272)
+		(val1 * val2 * val3).round 2
+	end
+
 	# calculate potential income 
 	# €0.096 per kwh * 1000 for mwh
 	# ideally user should be able to set price
@@ -100,6 +107,19 @@ class Project < ActiveRecord::Base
 	# fixed 80% efficiency
 	def chp_salable_elec(val1= chp_potential_elec, val2= 0.8)
 		(val1 * val2).round 2
+	end
+
+	# calculate carbon displaced by chp elec
+	# fixed value primary factor = 2.7
+	# fixed value emission factor = 0.643
+	def calc_carbon_savings_from_chp_elec(val1= chp_salable_elec, val2= 2.7, val3= 0.643)
+		(val1 * val2 * val3).round 2
+	end
+
+	# calculate conbined chp carbon displaced
+	def calc_carbon_savings_from_chp_combined(val1= calc_carbon_savings_from_chp_heat,
+																						val2= calc_carbon_savings_from_chp_elec)
+		(val1 + val2).round 2
 	end
 
 	# calculate required generator size
@@ -200,5 +220,20 @@ class Project < ActiveRecord::Base
 	def calc_potential_homes_fueled(val1= calc_upg_mwh_ch4, val2= 13.8)
 		(val1 / val2).round 1
 	end
+
+	# calculate potential carbon displaced from gas grid
+	# fixed primary factor = 1.1
+	# fixed emission factor = 0.203
+	def calc_carbon_savings_from_upg_ggrid(val1= calc_upg_mwh_ch4, val2= 1.1, val3= 0.203)
+		(val1 * val2 * val3).round 2
+	end
+
+	# calculate potential carbon displaced using fuel diesel
+	# fixed kg Co2/mwh = 0.2938
+	# fixed emissions reduction 78% = 0.78
+	def calc_carbon_savings_from_upg_diesel(val1= calc_upg_mwh_ch4, val2= 0.2938, val3= 0.78)
+		(val1 * val2 * val3).round 2
+	end
+
 
 end

@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
 	before_action :set_project, only: [:show, :edit, :update, :destroy, 
-                :digestate, :chp, :upgrading, :report]
+                :digestate, :chp, :upgrading, :carbon, :report]
 
   def index
     @projects = current_user.projects.newest_first
@@ -54,6 +54,9 @@ class ProjectsController < ApplicationController
   end
 
   def upgrading
+  end
+
+  def carbon
   end
 
   private

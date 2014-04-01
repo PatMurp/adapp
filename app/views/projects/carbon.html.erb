@@ -1,0 +1,40 @@
+<div class="container"><br>
+
+	<%= link_to '<< View Upgrading Values', upgrading_project_path(@project), :class => 'btn btn-info'  %>
+	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
+	<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-info' %>
+
+	<h3>Project Name: <%= @project.name %></h3>
+
+	<div class="col-md-8">
+			<%= column_chart({"CHP Heat" => @project.calc_carbon_savings_from_chp_heat,
+												"CHP Elec" => @project.calc_carbon_savings_from_chp_elec,
+												"CHP conbined" => @project.calc_carbon_savings_from_chp_combined,
+												"Upgrading Gas Grid" => @project.calc_carbon_savings_from_upg_ggrid,
+												"Upgrading fuel diesel" => @project.calc_carbon_savings_from_upg_diesel
+												
+			}) %>
+			<p class="text-center">Potential CO<sub>2</sub> savings Tonnes</p>
+	</div>
+
+		<div class="col-md-3 col-md-push-1">
+			<div class=" panel panel-success">
+				<div class="panel-heading">
+					<h4 class="panel-title">CO<sub>2</sub> Abatement Potential</h4>
+				</div>
+				
+				<div class="panel-body">
+				Anaerobic Digestion has the potential to reduce greenhouse gas emissions.<br><br>
+				<h5><%= @project.name %> CO<sub>2</sub> savings tonnes</h5>
+				<h5>CHP</h5>
+				Heat = <%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %><br>
+				Elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %><br>
+				Combined heat & elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_combined) %><br>
+				<h5>Upgrading</h5>
+				Gas grid = <%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %><br>
+				Fuel diesel = <td><%= @project.calc_carbon_savings_from_upg_diesel %></td>
+					
+				</div>
+			</div>
+		</div>
+</div>

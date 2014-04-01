@@ -2,6 +2,7 @@
 
 	<%= link_to '<< View CHP Values', chp_project_path(@project), :class => 'btn btn-info'  %>
 	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
+	<%= link_to 'CO2 Abatement >>', carbon_project_path(@project), :class => 'btn btn-info'  %>
 	<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-info' %>
 	
 	<h3>Project Name: <%= @project.name %></h3>
@@ -42,28 +43,36 @@
 		<div class="col-md-3 col-md-push-1">
 			<div class=" panel panel-success">
 				<div class="panel-heading">
-					<h4 class="panel-title">Biogas Upgrading</h4>
+					<h4 class="panel-title">Biogas Upgrading Potential</h4>
 				</div>
 				
 				<div class="panel-body">
-					Biogas upgrading is a process which removes carbon and other gasses
-					thereby increasing methane content. Upgraded methane can be used as a 
-					vehicle fuel or in the gas grid.<br><br>
+					Upgrading is only suitable for industrial scale AD plants.
+					It removes carbon and other gasses from the biogas.
+					Upgraded biogas can be used as a vehicle fuel or in the gas grid.<br><br>
 
-					Upgraded per hour = <%= @project.calc_upg_ch4_per_hour %><br><br>
-					Feasible greater than 500<br>
-					Marginal between 500 and 250<br>
-					Not feasible below 250
-
-					<h5>Potentially can fuel</h5>
+					Upgraded m&#179; per hour = <%= @project.calc_upg_ch4_per_hour %><br><br>
 					
-					<%= @project.calc_potential_buses_fueled %> busses or<br>
+
+					<h5><%= @project.name %> Potentially could fuel</h5>
+					
+					<%= @project.calc_potential_buses_fueled %> buses or<br>
 					<%= @project.calc_potential_wtruck_fueled %> refuse trucks or<br>
 					<%= @project.calc_potential_cars_fueled %> private cars or<br>
-					<%= @project.calc_potential_homes_fueled %> households
+					<%= @project.calc_potential_homes_fueled %> private households
 					
 				</div>
 			</div>
+		</div>
+		<div class="clearfix"></div>
+			<div class="col-md-8">
+				<%= column_chart({"Gas grid" => @project.calc_potential_gas_grid_income,
+													"CHP Electricity value" => @project.calc_potential_income_elec,
+													"CHP Electricity & Heat" => @project.calc_total_potential_income_chp,
+													"Vehicle fuel" => @project.calc_potential_upg_income_vehicle
+
+				}) %>
+				<p class="text-center">Biogas Potential Income Comparsion</p>
 		</div>
 	</div>
 </div>

@@ -323,6 +323,47 @@
 					}) %>
 					<p class="text-center">Potential Value €</p>
 			</div>
+			<div class="clearfix"></div>
+
+			<h2 class="text-center">CO<sub>2</sub> Abatement for <%= @project.name %></h2>
+
+			<div class="col-md-7 col-md-push-2">
+				<div class="well">
+					<div class="table-responsive">
+						<table class="table table-bordered">
+							<caption><strong>CO<sub>2</sub> Abatement Tonnes</strong></caption>
+							<thead>
+								<tr>
+									<th>CHP Heat</th>
+									<th>CHP Elec</th>
+									<th>CHP Combined</th>
+									<th>Upgrading gas grid</th>
+									<th>Upgrading fuel diesel</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="warning text-right">
+									<td><%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %></td>
+									<td><%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %></td>
+									<td><%= number_delimiter(@project.calc_carbon_savings_from_chp_combined) %></td>
+									<td><%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %></td>
+									<td><%= @project.calc_carbon_savings_from_upg_diesel %></td>
+								</tr>
+							</tbody> 
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7 col-md-push-2">
+			<%= column_chart({"CHP Heat" => @project.calc_carbon_savings_from_chp_heat,
+												"CHP Elec" => @project.calc_carbon_savings_from_chp_elec,
+												"CHP conbined" => @project.calc_carbon_savings_from_chp_combined,
+												"Upgrading Gas Grid" => @project.calc_carbon_savings_from_upg_ggrid,
+												"Upgrading fuel diesel" => @project.calc_carbon_savings_from_upg_diesel
+												
+				}) %>
+				<p class="text-center">Potential CO<sub>2</sub> savings Tonnes</p>
+		</div>
 
 	</div>
 </div>

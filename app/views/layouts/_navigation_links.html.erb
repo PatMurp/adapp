@@ -1,5 +1,7 @@
 <%# add navigation links to this file %>
 <%# active link is shown  %>
+<%# if user is logged in display appropiate links  %>
+<%# if logged in user has admin privilages display admin link  %>
 <% if user_signed_in? %>
 	<li class="<%= is_active?(projects_path) %>"><%= link_to 'View Projects', projects_path %></li>
   <li class="<%= is_active?(new_project_path) %>"><%= link_to 'Create New Project', new_project_path %></li>

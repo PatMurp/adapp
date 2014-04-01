@@ -7,6 +7,8 @@
 				by microorganisms in the absence of oxygen.<br><br>
 				This app allows you to create multiple anaerobic digestion projects. The app calculates
 				potenital: biogas, digestate, electricity, heat and upgraded biogas that can be generated with chosen feedstock volumes. <br><br>
+
+				<!-- only display buttons if user is logged in -->
 				<% if user_signed_in? %>
 					<%= link_to 'Create a New Project', new_project_path, :class => 'btn btn-primary btn-lg' %>
 					<%= link_to 'View existing Projects', projects_path, :class => 'btn btn-primary btn-lg' %><br><br>
@@ -19,7 +21,7 @@
 			</div>
 		</div>
 		<small class="alert alert-danger">Disclaimer: This app is for a pre-feasibility study only.
-			To confirm calculation results you should consult experts in the anaerobic digestion field.
+			To confirm calculation results you should consult the appropriate experts.
 		</small>
 	</div>
 

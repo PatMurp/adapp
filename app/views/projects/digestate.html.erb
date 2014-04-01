@@ -25,13 +25,17 @@
 		<div class="col-md-3">
 			<div class=" panel panel-success">
 				<div class="panel-heading">
-					<h4 class="panel-title">Digestate</h4>
+					<h4 class="panel-title">Potential Digestate</h4>
 				</div>
 				
 				<div class="panel-body">
-					Digestate is the material remaining after anaerobic digestion. AD
-					increases the availibility of nutrients. Digestate can be used as
-					a replacement for mineral fertilizers.
+					Digestate is a nutrient rich material remaining after anaerobic digestion.
+					It can be used as a replacement for mineral fertilizers.<br>
+					<h5><%= @project.name %> Totals Tonnes</h5>
+					Digestate = <%= number_delimiter(@project.total_digestate_tonnes) %><br><br>
+					Nitrogen = <%= number_delimiter(@project.total_digestate_nitrogen) %><br>
+					Phosphorus = <%= number_delimiter(@project.total_digestate_phosphorus) %><br>
+					Potassium = <%= number_delimiter(@project.total_digestate_potash) %>
 				</div>	
 			</div>
 		</div>

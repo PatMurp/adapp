@@ -16,18 +16,18 @@
 	</div>
 
 	
-
+	<!-- right hand info panel -->
 	<div class="col-md-3 col-md-push-1">
 			<div class=" panel panel-success">
 				<div class="panel-heading">
-					<h4 class="panel-title">Biogas</h4>
+					<h4 class="panel-title">Biogas Potential</h4>
 				</div>
 				
 				<div class="panel-body">
 					Biogas is a mixture of gasses produced from anaerobic digestion.<br><br>
 					Methane is the combustable part of biogas. It has an 
 					energy value of 37.78 MJ/m&#179;<br>
-					<h5>Project Totals</h5>
+					<h5><%= @project.name %> Totals</h5>
 					Feedstock tonnes = <%= number_delimiter(@project.total_tonnes) %><br>
 					Biogas m&#179; = <%= number_delimiter(@project.total_m3_biogas) %><br>
 					Methane  m&#179; = <%= number_delimiter(@project.total_m3_ch4) %>

@@ -40,7 +40,12 @@
 					<h5>Calculation Assumptions</h5>
 					50% of heat is used in digestor<br>
 					Heat price MWH = <%= number_euro(96) %><br>
-					Electriciy price MWH = <%=  number_euro(@project.elec_price) %>
+					Electriciy price MWH = <%=  number_euro(@project.elec_price) %><br>
+					<h5><%= @project.name %> CHP Potential Value</h5>
+					Heat = <%= number_euro(@project.calc_potential_income_heat) %><br>
+					Elec = <%= number_euro(@project.calc_potential_income_elec) %><br><br>
+
+					Heat & Elec = <%= number_euro(@project.calc_total_potential_income_chp) %>
 					
 					
 				</div>	

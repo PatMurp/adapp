@@ -6,12 +6,12 @@ Adapp::Application.routes.draw do
 
   resources :projects do
   	member do
-      get 'digestate', 'chp', 'upgrading', 'report'
+      get 'digestate', 'chp', 'upgrading', 'carbon', 'report'
     end
   end
 
   resources :feedstocks
-  get "calculations/new"
+  #get "calculations/new"
 
   
 
