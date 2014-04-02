@@ -1,0 +1,30 @@
+@media print {
+    #buttons_hide,  #nitrient_tonnes, #chp_energy, #avail_methane, #upg_value, #biogas_volume {
+      display: none;
+    }
+
+    #biogas_table {
+    	font-size: 80%;
+    }
+
+    #feedstock_volume {
+    	
+    }
+
+    #methane_volume {
+    	page-break-after: always;
+    }
+
+    #digestate_tonnes {
+    	page-break-after: always;
+    }
+
+    #chp_value {
+    	page-break-after: always;
+    }
+
+    #income_comparsion {
+    	page-break-after: always;
+    }
+
+ }

@@ -1,13 +1,16 @@
 <div class="container"><br>
-	<%= link_to '<< View Biogas Output', project_path(@project), :class => 'btn btn-info' %>
-	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
-	
+	<%= stylesheet_link_tag "print", media: 'print' %>
+	<div id="buttons_hide">
+		<%= link_to '<< View Biogas Output', project_path(@project), :class => 'btn btn-info' %>
+		<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
+		<a href="#" onclick="window.print();return false;">Print report</a> 
+	</div>
 
 	<h2 class="text-center">Biogas Values for <%= @project.name %></h2>
 
-	<div class="col-md-9 col-md-push-1">
+	<div class="col-md-9 col-md-push-1" id="biogas_table">
 		<div class="table-responsive">
-				<div class="well">
+				<div>
 					<table class="table table-bordered">
 						<caption><strong>Biogas Output & Energy Values</strong></caption>
 						<thead>
@@ -50,7 +53,6 @@
 								<th class="text-right"><%= number_delimiter(@project.total_gigjoules_ch4) %></th>
 								<th class="text-right"><%= number_delimiter(@project.total_mwh_ch4) %></th>
 							</tr>
-							
 						</tfoot>
 					</table>
 				</div>
@@ -59,14 +61,14 @@
 
 		<!-- display 2 bar charts in a row -->
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-6" id="feedstock_volume">
 				<%= pie_chart @project.calculations.map { |calculation|
 					[calculation.feedstock.type, calculation.tonnes] 
 				}, width: "250px", height: "250px"  %>
 				<p class="text-center">Feedstock Volume Tonnes</p>
 			</div>
 
-			<div class="col-md-6 text-center">
+			<div class="col-md-6 text-center" id="biogas_volume">
 				<%= pie_chart @project.calculations.map { |calculation|
 					[calculation.feedstock.type, calculation.calc_m3_biogas]
 				}, width: "250px", height: "250px"   %>
@@ -75,7 +77,7 @@
 		</div>
 
 		<!-- push bar chart into center -->
-		<div class="col-md-6 col-md-push-3">
+		<div class="col-md-6 col-md-push-3" id="methane_volume">
 			<%= pie_chart @project.calculations.map { |calculation|
 				[calculation.feedstock.type, calculation.calc_m3_ch4]
 			}, width: "250px", height: "250px"  %>
@@ -85,9 +87,9 @@
 	
 		<h2 class="text-center">Digestate Values for <%= @project.name %></h2>
 
-		<div class="col-md-6 col-md-push-3">
+		<div class="col-md-6 col-md-push-3" id="digestate_table">
 				<div class="table-responsive">
-					<div class="well">
+					<div>
 						<table class="table table-bordered">
 							<caption><strong>Digestate volume & Estimated Nutrient Volumes</strong></caption>
 							<thead>
@@ -124,14 +126,15 @@
 				</div>
 			</div>
 			<div class="clearfix"></div>
+
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6" id="digestate_tonnes">
 					<%= pie_chart @project.calculations.map { |calculation|
 						[calculation.feedstock.type, calculation.calc_digestate_tonnes] 
 					}  %>
 					<p class="text-center">Potential Digestate Tonnes</p>
 				</div>
-					<div class="col-md-6">
+					<div class="col-md-6" id="nitrient_tonnes">
 						<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
 															"Phosphorus" => @project.total_digestate_phosphorus,
 															"Potash" => @project.total_digestate_potash
@@ -139,13 +142,14 @@
 						<p class="text-center">Tonnes Potential Nutrients</p>
 				</div>
 			</div>
+
 			<div class="clearfix"></div>
 
 			<h2 class="text-center">CHP Values for <%= @project.name %></h2>
 
 			<div class="col-md-6">
 			<div class="table-responsive">
-				<div class="well">
+				<div>
 					<table class="table table-bordered">
 						<caption><strong>Combined Heat & Power Heat Potential</strong></caption>
 						<thead>
@@ -173,7 +177,7 @@
 
 		<div class="col-md-6">
 			<div class="table-responsive">
-				<div class="well">
+				<div>
 					<table class="table table-bordered">
 						<caption><strong>Combined Heat & Power Electricity Potential</strong></caption>
 						<thead>
@@ -209,7 +213,7 @@
 		</div>
 		<div class="clearfix"></div>
 
-		<div class="col-md-5 col-md-push-1">
+		<div class="col-md-5 col-md-push-1" id="chp_energy">
 				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
 													"Salable Heat" => @project.chp_salable_heat, 
 													"Generated Electricity" => @project.chp_salable_elec
@@ -217,7 +221,7 @@
 				<p class="text-center">MWH CHP Energy</p>
 		</div>
 
-		<div class="col-md-5">
+		<div class="col-md-5" id="chp_value">
 				<%= column_chart({"Heat Value" => @project.calc_potential_income_heat,
 													"Electricity Value" => @project.calc_potential_income_elec,
 													"Combined Value" => @project.calc_total_potential_income_chp
@@ -231,7 +235,7 @@
 
 		<div class="col-md-8 col-md-push-2">
 			<div class="table-responsive">
-				<div class="well">
+				<div>
 					<table class="table table-bordered">
 						<caption><strong>Upgrading Biogas</strong></caption>
 						<thead>
@@ -261,7 +265,7 @@
 
 		<div class="col-md-7">
 			<div class="table-responsive">
-				<div class="well">
+				<div>
 					<table class="table table-bordered">
 						<caption><strong>Vehicle Fuel</strong></caption>
 						<thead>
@@ -287,7 +291,7 @@
 			</div>
 		</div>
 		<div class="col-md-5">
-				<div class="well">
+				<div>
 					<div class="table-responsive">
 						<table class="table table-bordered">
 							<caption><strong>Gas Grid</strong></caption>
@@ -311,24 +315,37 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-5 col-md-push-1">
+
+			<div class="col-md-5 col-md-push-1" id="avail_methane">
 				<%= column_chart({"Available Methane" => @project.total_m3_ch4,
 													"Upgraded Methane" => @project.calc_upg_ch4 
 				}) %>
 				<p class="text-center">m&#179; Methane</p>
 			</div>
-			<div class="col-md-5">
+
+			<div class="col-md-5" id="upg_value">
 					<%= column_chart({"Vehicle Fuel" => @project.calc_potential_upg_income_vehicle,
 														"Gas Grid" => @project.calc_potential_gas_grid_income 
 					}) %>
 					<p class="text-center">Potential Value €</p>
 			</div>
+
+			<div class="col-md-8 col-md-push-2" id="income_comparsion">
+				<%= column_chart({"Gas grid" => @project.calc_potential_gas_grid_income,
+													"CHP Electricity value" => @project.calc_potential_income_elec,
+													"CHP Electricity & Heat" => @project.calc_total_potential_income_chp,
+													"Vehicle fuel" => @project.calc_potential_upg_income_vehicle
+
+				}) %>
+				<p class="text-center">Biogas Potential Income Comparsion</p>
+			</div>
+
 			<div class="clearfix"></div>
 
 			<h2 class="text-center">CO<sub>2</sub> Abatement for <%= @project.name %></h2>
 
 			<div class="col-md-7 col-md-push-2">
-				<div class="well">
+				<div>
 					<div class="table-responsive">
 						<table class="table table-bordered">
 							<caption><strong>CO<sub>2</sub> Abatement Tonnes</strong></caption>
