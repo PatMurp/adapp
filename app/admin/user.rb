@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :superadmin
 
+  # limit the user attributes shown
   index do
     column :email
     column :last_sign_in_at
@@ -11,6 +12,7 @@ ActiveAdmin.register User do
     default_actions
   end
 
+  # limit user form to attributes below
   form do |f|
     f.inputs "User Details" do
       f.input :email
@@ -20,5 +22,13 @@ ActiveAdmin.register User do
     end
     f.actions
   end
+
+  sidebar "User Details", only: [:show, :edit] do
+    ul do
+      li link_to("Projects", admin_user_projects_path(user))
+    end
+  end
+
+  filter :email
 
 end

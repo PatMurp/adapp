@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-	# helper for adding calculation fields
+	# helper for adding calculation fields in project form
 	def link_to_add_fields(name, f, association)
 		new_object = f.object.send(association).klass.new
 		id = new_object.object_id
@@ -25,7 +25,7 @@ module ApplicationHelper
 		number_to_currency(number, locale: :ie)
 	end
 
-	# navbar active link is highlighed
+	# navbar link is highlighed when page is active
 	def is_active?(link_path)
 	  if current_page?(link_path)
 	    "active"

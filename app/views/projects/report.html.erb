@@ -1,13 +1,16 @@
 <div class="container"><br>
 	<%= stylesheet_link_tag "print", media: 'print' %>
+
 	<div id="buttons_hide">
 		<%= link_to '<< View Biogas Output', project_path(@project), :class => 'btn btn-info' %>
 		<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
-		<a href="#" onclick="window.print();return false;">Print report</a> 
+		<div class="text-center">
+			<a href="#" class="btn btn-warning" onclick="window.print();return false;">Print report</a> 
+		</div>
 	</div>
 
 	<h2 class="text-center">Biogas Values for <%= @project.name %></h2>
-
+	<!-- biogas calculation table -->
 	<div class="col-md-9 col-md-push-1" id="biogas_table">
 		<div class="table-responsive">
 				<div>
@@ -59,7 +62,7 @@
 			</div>
 		</div>
 
-		<!-- display 2 bar charts in a row -->
+		<!-- display feedstock volume piechart -->
 		<div class="row">
 			<div class="col-md-6" id="feedstock_volume">
 				<%= pie_chart @project.calculations.map { |calculation|
@@ -68,6 +71,7 @@
 				<p class="text-center">Feedstock Volume Tonnes</p>
 			</div>
 
+			<!-- display biogas volume piechart -->
 			<div class="col-md-6 text-center" id="biogas_volume">
 				<%= pie_chart @project.calculations.map { |calculation|
 					[calculation.feedstock.type, calculation.calc_m3_biogas]
@@ -76,7 +80,7 @@
 			</div>
 		</div>
 
-		<!-- push bar chart into center -->
+		<!-- display methane volume piechart -->
 		<div class="col-md-6 col-md-push-3" id="methane_volume">
 			<%= pie_chart @project.calculations.map { |calculation|
 				[calculation.feedstock.type, calculation.calc_m3_ch4]
@@ -87,6 +91,7 @@
 	
 		<h2 class="text-center">Digestate Values for <%= @project.name %></h2>
 
+		<!-- biogas digestate table -->
 		<div class="col-md-6 col-md-push-3" id="digestate_table">
 				<div class="table-responsive">
 					<div>
@@ -128,12 +133,14 @@
 			<div class="clearfix"></div>
 
 			<div class="row">
+				<!-- display digestate volume piechart -->
 				<div class="col-md-6" id="digestate_tonnes">
 					<%= pie_chart @project.calculations.map { |calculation|
 						[calculation.feedstock.type, calculation.calc_digestate_tonnes] 
 					}  %>
 					<p class="text-center">Potential Digestate Tonnes</p>
 				</div>
+					<!-- display digestate nutrients column chart -->
 					<div class="col-md-6" id="nitrient_tonnes">
 						<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
 															"Phosphorus" => @project.total_digestate_phosphorus,
@@ -146,7 +153,7 @@
 			<div class="clearfix"></div>
 
 			<h2 class="text-center">CHP Values for <%= @project.name %></h2>
-
+			<!-- CHP heat table -->
 			<div class="col-md-6">
 			<div class="table-responsive">
 				<div>
@@ -175,6 +182,7 @@
 			</div>
 		</div>
 
+		<!-- CHP electricity table -->
 		<div class="col-md-6">
 			<div class="table-responsive">
 				<div>
@@ -213,6 +221,7 @@
 		</div>
 		<div class="clearfix"></div>
 
+		<!-- display chp energy column chart -->
 		<div class="col-md-5 col-md-push-1" id="chp_energy">
 				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
 													"Salable Heat" => @project.chp_salable_heat, 
@@ -221,6 +230,7 @@
 				<p class="text-center">MWH CHP Energy</p>
 		</div>
 
+		<!-- display chp potential income column chart -->
 		<div class="col-md-5" id="chp_value">
 				<%= column_chart({"Heat Value" => @project.calc_potential_income_heat,
 													"Electricity Value" => @project.calc_potential_income_elec,
@@ -233,6 +243,7 @@
 
 		<h2 class="text-center">Upgrading Values for <%= @project.name %></h2>
 
+		<!-- upgrading potential table -->
 		<div class="col-md-8 col-md-push-2">
 			<div class="table-responsive">
 				<div>
@@ -263,6 +274,7 @@
 			</div>
 		</div>
 
+		<!-- upgrading vehicle potential table -->
 		<div class="col-md-7">
 			<div class="table-responsive">
 				<div>
@@ -290,6 +302,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- upgrading gas grid potential table -->
 		<div class="col-md-5">
 				<div>
 					<div class="table-responsive">
@@ -316,13 +330,14 @@
 				</div>
 			</div>
 
+			<!-- display upgrading methane column chart -->
 			<div class="col-md-5 col-md-push-1" id="avail_methane">
 				<%= column_chart({"Available Methane" => @project.total_m3_ch4,
 													"Upgraded Methane" => @project.calc_upg_ch4 
 				}) %>
 				<p class="text-center">m&#179; Methane</p>
 			</div>
-
+			<!-- display upgrading income column chart -->
 			<div class="col-md-5" id="upg_value">
 					<%= column_chart({"Vehicle Fuel" => @project.calc_potential_upg_income_vehicle,
 														"Gas Grid" => @project.calc_potential_gas_grid_income 
@@ -330,6 +345,7 @@
 					<p class="text-center">Potential Value €</p>
 			</div>
 
+			<!-- display biogas potential income column chart -->
 			<div class="col-md-8 col-md-push-2" id="income_comparsion">
 				<%= column_chart({"Gas grid" => @project.calc_potential_gas_grid_income,
 													"CHP Electricity value" => @project.calc_potential_income_elec,
@@ -344,6 +360,7 @@
 
 			<h2 class="text-center">CO<sub>2</sub> Abatement for <%= @project.name %></h2>
 
+			<!-- co2 abatement table -->
 			<div class="col-md-7 col-md-push-2">
 				<div>
 					<div class="table-responsive">
@@ -371,6 +388,8 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- display co2 abatment for various bogas options column chart -->
 			<div class="col-md-7 col-md-push-2">
 			<%= column_chart({"CHP Heat" => @project.calc_carbon_savings_from_chp_heat,
 												"CHP Elec" => @project.calc_carbon_savings_from_chp_elec,

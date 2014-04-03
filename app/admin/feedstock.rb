@@ -9,4 +9,6 @@ ActiveAdmin.register Feedstock do
     default_actions
   end
 
+  filter :type
+
 end

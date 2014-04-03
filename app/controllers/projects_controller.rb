@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
     @project.calculations.build
   end
 
+  # display biogas results
   def show
   end
 
@@ -44,18 +45,23 @@ class ProjectsController < ApplicationController
   	redirect_to(:action => 'index')
   end
 
+  # display calculation report
   def report
   end
 
+  # display disgestate results
   def digestate
   end
 
+  # display CHP results
   def chp
   end
 
+  # display upgrading results
   def upgrading
   end
 
+  # display carbon results
   def carbon
   end
 
