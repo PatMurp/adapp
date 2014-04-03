@@ -9,7 +9,6 @@ class Project < ActiveRecord::Base
 
 	
 	validates :name, presence: true
-	#validates :name, uniqueness: { case_sensitive: false }
 
 	# newest project is displayed at top of list on index page
 	scope :newest_first, lambda { order("projects.created_at DESC") }
@@ -234,6 +233,5 @@ class Project < ActiveRecord::Base
 	def calc_carbon_savings_from_upg_diesel(val1= calc_upg_mwh_ch4, val2= 0.2938, val3= 0.78)
 		(val1 * val2 * val3).round 2
 	end
-
 
 end

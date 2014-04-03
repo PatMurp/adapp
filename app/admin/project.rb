@@ -11,4 +11,5 @@ ActiveAdmin.register Project do
     belongs_to :project
   end
   
+  filter :name
 end

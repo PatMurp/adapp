@@ -3,14 +3,6 @@ require 'spec_helper'
 # validation in feedstock model needs to be uncommented to pass tests
 
 describe Feedstock do 
-	#it "is valid with a type, tonnes, biogas_per_tonne, methane_percent and digestate_percent" do
-		#feedstock = Feedstock.new(
-			#type: 'grass',
-			#tonnes: 59,
-			#biogas_per_tonne: 100,
-			#methane_percent: 54,
-			#digestate_percent: 89)
-		#expect(feedstock).to be_valid
 
 	it { should have_many(:calculations) }	
 
@@ -39,15 +31,15 @@ describe Feedstock do
 
 	it "returns a type as a strings" do
 		feedstock = FactoryGirl.build(:feedstock,
-			type: 'grass', tonnes: 59, biogas_per_tonne: 100, methane_percent: 54,
+			type: 'grass', biogas_per_tonne: 100, methane_percent: 54,
 			digestate_percent: 89)
 		expect(feedstock.type). to eq 'grass'
 	end
 
 	it "is is invalid with a duplicate type" do
-		FactoryGirl.create(:feedstock, type: 'grass', tonnes: 59, biogas_per_tonne: 100, methane_percent: 54,
+		FactoryGirl.create(:feedstock, type: 'grass', biogas_per_tonne: 100, methane_percent: 54,
 			digestate_percent: 89)
-		feedstock = FactoryGirl.build(:feedstock, type: 'grass', tonnes: 59, biogas_per_tonne: 100, methane_percent: 54,
+		feedstock = FactoryGirl.build(:feedstock, type: 'grass', biogas_per_tonne: 100, methane_percent: 54,
 			digestate_percent: 89)
 		expect(feedstock).to have(1).errors_on(:type)
 	end

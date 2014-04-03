@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :project do
   	name "proj1"
+  	user_id "1"
   end
 end
