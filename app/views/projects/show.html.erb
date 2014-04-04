@@ -24,13 +24,28 @@
 				</div>
 				
 				<div class="panel-body">
-					Biogas is a mixture of gasses produced from anaerobic digestion.<br><br>
-					Methane is the combustable part of biogas. It has an 
-					energy value of 37.78 MJ/m&#179;<br>
 					<h5><%= @project.name %> Totals</h5>
-					Feedstock tonnes = <%= number_delimiter(@project.total_tonnes) %><br>
-					Biogas m&#179; = <%= number_delimiter(@project.total_m3_biogas) %><br>
-					Methane  m&#179; = <%= number_delimiter(@project.total_m3_ch4) %>
+
+					<div id="hint"> <!-- bootstrap 3 tooltips -->
+
+						<a href="#" rel="tooltip" title="Suitable feedstocks include: animal slurries, industrial bio wastes, organic waste, sewage sludge, energy crops, animal by-products,
+						& catering waste.">
+							Feedstock
+						</a> tonnes = <%= number_delimiter(@project.total_tonnes) %><br>
+
+						<a href="#" rel="tooltip" title="Biogas is a mixture of gasses produced from anaerobic digestion.">
+							Biogas
+						</a> m&#179; = <%= number_delimiter(@project.total_m3_biogas) %><br>
+
+						<a href="#" rel="tooltip" title="Methane is the combustable part of biogas. It has an 
+						energy value of 37.78 MJ/m&#179;">
+							Methane
+						</a>  m&#179; = <%= number_delimiter(@project.total_m3_ch4) %><br><br>
+
+						<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
+						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
+
+					</div>
 				</div>	
 			</div>
 		</div>
@@ -53,6 +68,58 @@
 		}  %>
 		<p class="text-center">Methane Potential m&#179;</p><br>
 	</div>
+
+	<!-- table hidden by default -->
+	<div class="col-md-9 col-md-push-1 showhide" id="biogas_table" hidden="true">
+		<div class="table-responsive">
+				<div>
+					<table class="table table-bordered">
+						<caption><strong>Biogas Output & Energy Values</strong></caption>
+						<thead>
+							<tr>
+								<th>Feedstock</th>
+								<th>Tonnes</th>
+								<th>biogas/tonne</th>
+								<th>m&#179; biogas</th>
+								<th>% CH<sub>4</sub></th>
+								<th>m&#179; CH<sub>4</th>
+								<th>kg CH<sub>4</sub></th>
+								<th>Gigajoules</th>
+								<th>MWH</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% for calculation in @project.calculations %>
+								<tr class="success">
+									<td><%= calculation.feedstock.type %></td>
+									<td class="text-right"><%= number_delimiter(calculation.tonnes) %></td>
+									<td class="text-right"><%= calculation.feedstock.biogas_per_tonne %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_m3_biogas) %></td>
+									<td class="text-right"><%= number_percent(calculation.feedstock.methane_percent * 100) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_m3_ch4) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_kg_ch4) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_gigjoules_ch4) %></td>
+									<td class="text-right"><%= number_delimiter(calculation.calc_mwh_ch4) %></td>
+								</tr>
+							<% end %>
+						</tbody>
+						<tfoot>
+							<tr class="warning">
+								<th>Totals</th>
+								<th class="text-right"><%= number_delimiter(@project.total_tonnes) %></th>
+								<th></th>
+								<th class="text-right"><%= number_delimiter(@project.total_m3_biogas) %></th>
+								<th></th>
+								<th class="text-right"> <%= number_delimiter(@project.total_m3_ch4) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_kg_ch4) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_gigjoules_ch4) %></th>
+								<th class="text-right"><%= number_delimiter(@project.total_mwh_ch4) %></th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
 
 
 </div>

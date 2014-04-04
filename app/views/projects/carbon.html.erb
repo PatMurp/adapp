@@ -9,7 +9,7 @@
 	<div class="col-md-8">
 			<%= column_chart({"CHP Heat" => @project.calc_carbon_savings_from_chp_heat,
 												"CHP Elec" => @project.calc_carbon_savings_from_chp_elec,
-												"CHP conbined" => @project.calc_carbon_savings_from_chp_combined,
+												"CHP combined" => @project.calc_carbon_savings_from_chp_combined,
 												"Upgrading Gas Grid" => @project.calc_carbon_savings_from_upg_ggrid,
 												"Upgrading fuel diesel" => @project.calc_carbon_savings_from_upg_diesel
 												
@@ -24,16 +24,54 @@
 				</div>
 				
 				<div class="panel-body">
-				Anaerobic Digestion has the potential to reduce greenhouse gas emissions.<br><br>
-				<h5><%= @project.name %> CO<sub>2</sub> savings tonnes</h5>
-				<h5>CHP</h5>
-				Heat = <%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %><br>
-				Elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %><br>
-				Combined heat & elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_combined) %><br>
-				<h5>Upgrading</h5>
-				Gas grid = <%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %><br>
-				Fuel diesel = <td><%= @project.calc_carbon_savings_from_upg_diesel %></td>
-					
+
+					<div id="hint">
+						<h5><%= @project.name %> 
+							<a href="#" rel="tooltip" title="Anaerobic Digestion has the potential to reduce 	 				greenhouse gas emissions.">
+								CO<sub>2</sub>
+							</a> savings tonnes
+						</h5>
+
+						<h5>CHP</h5>
+						Heat = <%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %><br>
+						Elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %><br>
+						Combined heat & elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_combined) %><br>
+						<h5>Upgrading</h5>
+						Gas grid = <%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %><br>
+						Fuel diesel = <td><%= @project.calc_carbon_savings_from_upg_diesel %></td><br><br>
+					</div>
+					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
+					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
+				</div>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<div class="col-md-7 col-md-push-2 showhide" hidden="true">
+			<div>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<caption><strong>CO<sub>2</sub> Abatement Tonnes</strong></caption>
+						<thead>
+							<tr>
+								<th>CHP Heat</th>
+								<th>CHP Elec</th>
+								<th>CHP Combined</th>
+								<th>Upgrading gas grid</th>
+								<th>Upgrading fuel diesel</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="warning text-right">
+								<td><%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %></td>
+								<td><%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %></td>
+								<td><%= number_delimiter(@project.calc_carbon_savings_from_chp_combined) %></td>
+								<td><%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %></td>
+								<td><%= @project.calc_carbon_savings_from_upg_diesel %></td>
+							</tr>
+						</tbody> 
+					</table>
 				</div>
 			</div>
 		</div>

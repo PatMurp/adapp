@@ -31,25 +31,101 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">Combined Heat & Power (CHP)</h4>
 				</div>
-				
 				<div class="panel-body">
-					CHP generation is the most common use for biogas. CHP
-					plants have a maximum efficiency of 90% and produce 35%
-					electricty and 65% heat.
+					<div id="hint">
+						<h5><%= @project.name %> 
 
-					<h5>Calculation Assumptions</h5>
-					50% of heat is used in digestor<br>
-					Heat price MWH = <%= number_euro(96) %><br>
-					Electriciy price MWH = <%=  number_euro(@project.elec_price) %><br>
-					<h5><%= @project.name %> CHP Potential Value</h5>
-					Heat = <%= number_euro(@project.calc_potential_income_heat) %><br>
-					Elec = <%= number_euro(@project.calc_potential_income_elec) %><br><br>
+						<a href="#" rel="tooltip" title="CHP generation is the most common use for biogas. 
+							CHP plants have a maximum efficiency of 90% and produce 35%
+					  	electricty and 65% heat.">CHP
+						</a> Potential Value</h5>
 
-					Heat & Elec = <%= number_euro(@project.calc_total_potential_income_chp) %>
-					
-					
+						<a href="#" rel="tooltip" title="Assumptions: 50% of heat is used in digestor. Price
+							per MWH is <%= number_euro(96) %>.">Heat
+						</a> = <%= number_euro(@project.calc_potential_income_heat) %><br>
+
+						<a href="#" rel="tooltip" title="Assumptions: Electricity price per MWH is <%= number_euro(@project.elec_price) %>">
+							Elec
+						</a> = <%= number_euro(@project.calc_potential_income_elec) %><br><br>
+
+						Heat & Elec = <%= number_euro(@project.calc_total_potential_income_chp) %><br><br>
+						
+					</div>
+					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
+					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
 				</div>	
 			</div>
 		</div>
+		<div class="clearfix"></div>
+
+		<!-- tables hidden by default -->
+		<div class="showhide" hidden="true">
+			<div class="col-md-6">
+				<div class="table-responsive">
+					<div>
+						<table class="table table-bordered">
+							<caption><strong>Combined Heat & Power Heat Potential</strong></caption>
+							<thead>
+								<tr>
+									<th>Potential Heat</th>
+									<th>Usable Heat</th>
+									<th>Salable Heat</th>
+									<th>price per MWH</th>
+									<th>Potential Income</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="warning text-right">
+									<td><%= number_delimiter(@project.total_mwh_ch4) %></td>
+									<td><%= number_delimiter(@project.chp_usable_heat) %></td>
+									<td><%= number_delimiter(@project.chp_salable_heat) %></td>
+									<td><%= number_euro(96) %></td>
+									<td><%= number_euro(@project.calc_potential_income_heat) %></td>
+								</tr>
+							</tbody>	
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- CHP electricity table -->
+			<div class="col-md-6">
+				<div class="table-responsive">
+					<div>
+						<table class="table table-bordered">
+							<caption><strong>Combined Heat & Power Electricity Potential</strong></caption>
+							<thead>
+								<tr>
+									<th>Potential Elec</th>
+									<th>Salable Elec</th>
+									<th>Required Generator Size MW</th>
+									<th>Price MWH</th>
+									<th>Potential Income</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr  class="warning text-right">
+									<td><%= number_delimiter(@project.chp_potential_elec) %></td>
+									<td><%= number_delimiter(@project.chp_salable_elec) %></td>
+									<td><%= @project.calc_generator_size %></td>
+									<td><%= number_euro(@project.elec_price) %></td>
+									<td><%= number_euro(@project.calc_potential_income_elec) %></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>Total</th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th class="text-right"><%= number_euro(@project.calc_total_potential_income_chp) %></th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>

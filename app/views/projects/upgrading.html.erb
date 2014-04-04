@@ -7,7 +7,7 @@
 	
 	<h3>Project Name: <%= @project.name %></h3>
 
-	<!-- Dynamic alerts displayed depending biogas upgraded per hour -->
+	<!-- Dynamic alerts displayed depending on biogas upgraded per hour -->
 	<h3 class="text-center">
 		<% if @project.calc_upg_ch4_per_hour < 250 %>
 			<p class="alert alert-danger">
@@ -47,20 +47,52 @@
 				</div>
 				
 				<div class="panel-body">
-					Upgrading is only suitable for industrial scale AD plants.
-					It removes carbon and other gasses from the biogas.
-					Upgraded biogas can be used as a vehicle fuel or in the gas grid.<br><br>
+					<div id="hint"> <!-- bootstrap 3 tooltips allowed in this div -->
+						<h5><%= @project.name %> Upgrading Potential</h5>
 
-					Upgraded m&#179; per hour = <%= @project.calc_upg_ch4_per_hour %><br><br>
-					
+						<a href="#" rel="tooltip" title="Upgrading is only suitable for industrial scale AD plants	.It removes carbon and other gasses from the biogas.
+							Upgraded biogas can be used as a vehicle fuel or in the gas grid.">
+							Upgraded
+						</a> = <%= number_delimiter(@project.calc_upg_ch4) %> m&#179;<br>
 
-					<h5><%= @project.name %> Potentially could fuel</h5>
+						<a href="#" rel="tooltip" title="Assumed value of vehicle fuel is <%= number_euro(0.81) %> per m&#179;">
+							Vehicle Fuel
+						</a> value = <%= number_euro(@project.calc_potential_upg_income_vehicle) %><br>
+
+						<a href="#" rel="tooltip" title="Whole sale gas is sold in therms. <%= @project.name %>
+							therms = <%= number_delimiter(@project.calc_upg_therms) %> Assumed value is <%= number_euro(0.96) %> per therm">
+							Gas grid
+						</a> value = <%= number_euro(@project.calc_potential_gas_grid_income) %><br><br>
+						Upgraded m&#179; per hour = 
+						<a href="#" rel="tooltip" title="Upgrading is not feasible below 250, it is 
+							marginal between 250 and 500, and it is feasible above 500">
+							<%= @project.calc_upg_ch4_per_hour %>
+						</a><br>
+						
+						<h5>Potentially could fuel</h5>
+						<%= @project.calc_potential_buses_fueled %> 
+						<a href="#" rel="tooltip" title="Assumed annual bus consumption 27,500 m&#179; methane">
+							buses
+						</a> or<br>
+
+						<%= @project.calc_potential_wtruck_fueled %> 
+						<a href="#" rel="tooltip" title="Assumed annual truck consumption 35,750 m&#179; methane">
+							refuse trucks
+						</a> or<br>
+
+						<%= @project.calc_potential_cars_fueled %> 
+						<a href="#" rel="tooltip" title="Assumed annual car consumption 1,035 m&#179; methane">
+							private cars
+						</a> or<br>
+
+						<%= @project.calc_potential_homes_fueled %> 
+						<a href="#" rel="tooltip" title="Assumed annual household consumption 13.8 MWH methane">
+							private households
+						</a>
+					</div><br>
 					
-					<%= @project.calc_potential_buses_fueled %> buses or<br>
-					<%= @project.calc_potential_wtruck_fueled %> refuse trucks or<br>
-					<%= @project.calc_potential_cars_fueled %> private cars or<br>
-					<%= @project.calc_potential_homes_fueled %> private households
-					
+					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
+						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
 				</div>
 			</div>
 		</div>
@@ -76,6 +108,97 @@
 				}) %>
 				<p class="text-center">Biogas Potential Income Comparsion</p>
 		</div>
+		<div class="clearfix"></div>
+
+		<div class="showhide" hidden="true">
+			<div class="col-md-8 col-md-push-2">
+				<div class="table-responsive">
+					<div>
+						<table class="table table-bordered">
+							<caption><strong>Upgrading Biogas</strong></caption>
+							<thead>
+								<tr>
+									<th>Available CH<sub>4</sub></th>
+									<th>Energy Used MWh</th>
+									<th>CH<sub>4</sub> loss</th>
+									<th>Upgraded CH<sub>4</sub></th>
+									<th>Upgraded Gigajoules</th>
+									<th>CH<sub>4</sub>/hr</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="warning class-right">
+									<td><%= number_delimiter(@project.total_m3_ch4) %></td>
+									<td><%= number_delimiter(@project.calc_upg_energy_consump) %></td>
+									<td><%= number_delimiter(@project.calc_upg_ch4_loss) %></td>
+									<td><%= number_delimiter(@project.calc_upg_ch4) %></td>
+									<td><%= number_delimiter(@project.calc_upg_gigjoules_ch4) %></td>
+									<td><%= number_delimiter(@project.calc_upg_ch4_per_hour) %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- upgrading vehicle potential table -->
+			<div class="col-md-7">
+				<div class="table-responsive">
+					<div>
+						<table class="table table-bordered">
+							<caption><strong>Vehicle Fuel</strong></caption>
+							<thead>
+								<tr>
+									<th>Price/m3</th>
+									<th>Potential Value</th>
+									<th>Buses Fueled</th>
+									<th>Refuse Trucks Fueled</th>
+									<th>Private Cars Fueled</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="warning text-right">
+									<td><%= number_euro(0.81) %></td>
+									<td><%= number_euro(@project.calc_potential_upg_income_vehicle) %></td>
+									<td><%= number_delimiter(@project.calc_potential_buses_fueled) %></td>
+									<td><%= number_delimiter(@project.calc_potential_wtruck_fueled) %></td>
+									<td><%= number_delimiter(@project.calc_potential_cars_fueled) %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- upgrading gas grid potential table -->
+			<div class="col-md-5">
+					<div>
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<caption><strong>Gas Grid</strong></caption>
+								<thead>
+									<tr>
+										<th>Therms</th>
+										<th>Therm price</th>
+										<th>Potential Value</th>
+										<th>Households fueled</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="warning text-right">
+										<td ><%= number_delimiter(@project.calc_upg_therms) %></td>
+										<td><%= number_euro(0.96) %></td>
+										<td><%= number_euro(@project.calc_potential_gas_grid_income) %></td>
+										<td><%= @project.calc_potential_homes_fueled %></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>
 

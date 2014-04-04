@@ -15,4 +15,21 @@ jQuery ->
 		$(this).before($(this).data('fields').replace(regexp, time))
 		event.preventDefault()
 
+	# use bootstrap tooltip
+	$('#hint a').tooltip()
+
+	# unhide and hide html content
+	$("#hideh1").click ->
+	  $("div.showhide").hide()
+	  return
+	$("#showh1").click ->
+	  $("div.showhide").show()
+	  return
+
+  
+
+
+
+
+
 
