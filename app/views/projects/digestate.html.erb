@@ -1,11 +1,13 @@
 <div class="container"><br>
-
-	<%= link_to '<< View Biogas Output', project_path(@project), :class => 'btn btn-info' %>
-	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary' %>
-	<%= link_to 'View CHP Values >>', chp_project_path(@project), :class => 'btn btn-info'  %>
-	<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-info' %>
-
-	<h3>Project Name: <%= @project.name %></h3>
+	<div class="row">
+		<div class="col-md-4">
+			<%= render 'layouts/project_navigation_links' %>
+			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
+		</div>
+		<div class="col-md-3">
+			<h4><%= @project.name %> Digestate Output</h4>
+		</div>
+	</div>
 
 	
 		<div class="col-md-5">
@@ -42,6 +44,8 @@
 
 					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
 					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
+					<%= link_to 'CHP >>', chp_project_path(@project), :class => 'btn btn-info btn-sm' %><br><br>
+					<%= link_to '<< Biogas', project_path(@project), :class => 'btn btn-info btn-sm' %>
 					
 				</div>	
 			</div>
@@ -87,7 +91,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 

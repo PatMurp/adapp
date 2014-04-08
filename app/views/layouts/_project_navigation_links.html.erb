@@ -1,0 +1,18 @@
+<div class="btn-group">
+
+	<button type="button" class="btn btn-primary">Project Links</button>
+	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+		<span class="caret"></span>
+		<span class="sr-only">Toggle Dropdown</span>
+	</button >
+	<ul class="dropdown-menu" role="menu">
+		
+		<li><%= link_to 'Edit Project', edit_project_path(@project)  %></li>
+		<li class="divider"></li>
+		<li><%= link_to 'Biogas Output', project_path(@project) %></li>
+		<li><%= link_to 'Digestate Values', digestate_project_path(@project) %></li>
+		<li><%= link_to 'CHP Values', chp_project_path(@project) %></li>
+		<li><%= link_to 'Upgrading Values', upgrading_project_path(@project) %></li>
+		<li><%= link_to 'CO2 Abatement', carbon_project_path(@project) %></li>
+	</ul>
+</div>

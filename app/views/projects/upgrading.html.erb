@@ -1,11 +1,16 @@
 <div class="container"><br>
 
-	<%= link_to '<< View CHP Values', chp_project_path(@project), :class => 'btn btn-info'  %>
-	<%= link_to 'Edit Project', edit_project_path(@project), :class => 'btn btn-primary'  %>
-	<%= link_to 'CO2 Abatement >>', carbon_project_path(@project), :class => 'btn btn-info'  %>
-	<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-info' %>
+	<div class="row">
+		<div class="col-md-4">
+			<%= render 'layouts/project_navigation_links' %>
+			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
+		</div>
+		<div class="col-md-3">
+			<h4><%= @project.name %> Upgrading Output</h4>
+		</div>
+	</div>
+
 	
-	<h3>Project Name: <%= @project.name %></h3>
 
 	<!-- Dynamic alerts displayed depending on biogas upgraded per hour -->
 	<h3 class="text-center">
@@ -93,6 +98,10 @@
 					
 					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
 						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
+					<%= link_to 'CO2 >>', carbon_project_path(@project), :class => 'btn btn-info btn-sm'  %><br><br>
+					<%= link_to '<< CHP', chp_project_path(@project), :class => 'btn btn-info btn-sm'  %>
+
+
 				</div>
 			</div>
 		</div>
