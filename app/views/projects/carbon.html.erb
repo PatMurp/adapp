@@ -6,20 +6,18 @@
 			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
 		</div>
 		<div class="col-md-3">
-			<h4><%= @project.name %> CO<sub>2</sub>
-			 Output</h4>
+			<h3><%= @project.name %> CO<sub>2</sub> Savings</h3>
 		</div>
 	</div>
-
+	<!-- chp comparsion chart -->
 	<div class="col-md-8">
-			<%= column_chart({"CHP Heat" => @project.calc_carbon_savings_from_chp_heat,
-												"CHP Elec" => @project.calc_carbon_savings_from_chp_elec,
-												"CHP combined" => @project.calc_carbon_savings_from_chp_combined,
-												"Upgrading Gas Grid" => @project.calc_carbon_savings_from_upg_ggrid,
-												"Upgrading fuel diesel" => @project.calc_carbon_savings_from_upg_diesel
-												
-			}) %>
-			<p class="text-center">Potential CO<sub>2</sub> savings Tonnes</p>
+		<%= column_chart({"CHP Heat" => @project.calc_carbon_savings_from_chp_heat,
+											"CHP Elec" => @project.calc_carbon_savings_from_chp_elec,
+											"CHP combined" => @project.calc_carbon_savings_from_chp_combined,
+											"Upgrading Gas Grid" => @project.calc_carbon_savings_from_upg_ggrid,
+											"Upgrading fuel diesel" => @project.calc_carbon_savings_from_upg_diesel
+		}) %>
+		<p class="text-center">Potential CO<sub>2</sub> savings Tonnes</p>
 	</div>
 
 		<div class="col-md-3 col-md-push-1">
@@ -30,31 +28,47 @@
 				
 				<div class="panel-body">
 
-					<div id="hint">
+					<div id="hint"> <!-- bootstrap 3 tooltips enabled -->
 						<h5><%= @project.name %> 
-							<a href="#" rel="tooltip" title="Anaerobic Digestion has the potential to reduce 	 				greenhouse gas emissions.">
+							<a href="#" rel="tooltip" title="Anaerobic Digestion has the potential to reduce 	 				greenhouse gas emissions. Tonnes of CO2 is calculated by multipling primary factor by 
+							emission factor by MWH of methane.">
 								CO<sub>2</sub>
 							</a> savings tonnes
 						</h5>
 
 						<h5>CHP</h5>
-						Heat = <%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %><br>
-						Elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %><br>
+						<a href="#" rel="tooltip" title="Assumed that heat is replacing heating oil. Primary factor = 1.1, emission factor = 0.272">
+							Heat
+						</a> = <%= number_delimiter(@project.calc_carbon_savings_from_chp_heat) %><br>
+
+						<a href="#" rel="tooltip" title="Primary factor = 2.7, emisssion factor = 0.643">
+							Elec
+						</a> = <%= number_delimiter(@project.calc_carbon_savings_from_chp_elec) %><br>
+
 						Combined heat & elec = <%= number_delimiter(@project.calc_carbon_savings_from_chp_combined) %><br>
+
 						<h5>Upgrading</h5>
-						Gas grid = <%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %><br>
-						Fuel diesel = <td><%= @project.calc_carbon_savings_from_upg_diesel %></td><br><br>
+
+						<a href="#" rel="tooltip" title="Primary factor = 1.1, emission factor = 0.203">
+							Gas grid
+						</a> = <%= number_delimiter(@project.calc_carbon_savings_from_upg_ggrid) %><br>
+
+						<a href="#" rel="tooltip" title="Assuming 0.2938 kg CO2/kwh & emission reduction
+						of 78%">
+							Fuel diesel
+						</a> = <td><%= @project.calc_carbon_savings_from_upg_diesel %></td><br><br>
+
 					</div>
 					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
-					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
-					<%= link_to '<<Upgrading', upgrading_project_path(@project), :class => 'btn btn-info btn-sm'  %><br><br>
-					<%= link_to 'Biogas >>', project_path(@project), :class => 'btn btn-info'  %>
-				</div>
+					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1"><br><br>
+					<%= link_to '<< Upgrading', upgrading_project_path(@project), :class => 'btn btn-info btn-sm'  %>
+					<%= link_to 'Biogas >>', project_path(@project), :class => 'btn btn-info btn-sm'  %>
+				</div> <!-- tooltips end -->
 			</div>
 		</div>
 
 		<div class="clearfix"></div>
-
+		<!-- table hidden by default -->
 		<div class="col-md-7 col-md-push-2 showhide" hidden="true">
 			<div>
 				<div class="table-responsive">

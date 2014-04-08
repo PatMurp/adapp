@@ -6,24 +6,12 @@
 			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
 		</div>
 		<div class="col-md-3">
-			<h4><%= @project.name %> Biogas Output</h4>
+			<h3><%= @project.name %> Biogas Output</h3>
 		</div>
 	</div>
 
-	<!-- <ul class="pager">
-	  <li><%= link_to '< View Project Report', report_project_path(@project) %></li>
-	  <li><%= link_to 'View Digestate Values >', digestate_project_path(@project) %></li>
-	</ul> -->
-
-
-	
-	
-
-	
-	
-
 	<!-- feedstock percentage bar chart -->
-	<div class="col-md-8">
+	<div class="col-md-7">
 		<%= pie_chart @project.calculations.map { |calculation|
 			[calculation.feedstock.type, calculation.tonnes] 
 		}   %>
@@ -31,9 +19,9 @@
 	</div>
 
 	
-	<!-- right hand info panel -->
-	<div class="col-md-3 col-md-push-1">
-			<div class=" panel panel-success">
+	
+	<div class="col-md-3 col-md-push-2">
+			<div class=" panel panel-success"> <!-- right side hand info panel -->
 				<div class="panel-heading">
 					<h4 class="panel-title">Biogas Potential</h4>
 				</div>
@@ -41,9 +29,9 @@
 				<div class="panel-body">
 					<h5><%= @project.name %> Totals</h5>
 
-					<div id="hint"> <!-- bootstrap 3 tooltips -->
+					<div id="hint"> <!-- bootstrap 3 tooltips enabled -->
 
-						<a href="#" rel="tooltip" title="Suitable feedstocks include: animal slurries, industrial bio wastes, organic waste, sewage sludge, energy crops, animal by-products,
+						<a href="#" rel="tooltip" title="Suitable feedstocks for anaerobic digestion include: animal slurries, industrial bio wastes, organic waste, sewage sludge, energy crops, animal by-products,
 						& catering waste.">
 							Feedstock
 						</a> tonnes = <%= number_delimiter(@project.total_tonnes) %><br>
@@ -61,19 +49,19 @@
 						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
 						<%= link_to 'Digestate >>', digestate_project_path(@project), :class => 'btn btn-info btn-sm' %>
 
-					</div>
+					</div> <!-- end tooltips enabled -->
 				</div>	
 			</div>
 		</div>
 	</div>
-	<div class="clearfix"></div>
+	
 
 	<!-- biogas percentage bar chart -->
-	<div class="col-md-6 text-center">
+	<div class="col-md-6">
 		<%= pie_chart @project.calculations.map { |calculation|
 			[calculation.feedstock.type, calculation.calc_m3_biogas]
 		}   %>
-		<p class="text-center">Biogas Potential m&#179;</p><br>
+		<p class="text-center">Biogas Potential m&#179;</p>
 	</div>
 	
 
@@ -82,8 +70,9 @@
 		<%= pie_chart @project.calculations.map { |calculation|
 			[calculation.feedstock.type, calculation.calc_m3_ch4]
 		}  %>
-		<p class="text-center">Methane Potential m&#179;</p><br>
+		<p class="text-center">Methane Potential m&#179;</p>
 	</div>
+	<div class="clearfix"></div>
 
 	<!-- table hidden by default -->
 	<div class="col-md-9 col-md-push-1 showhide" id="biogas_table" hidden="true">
@@ -136,7 +125,7 @@
 				</div>
 			</div>
 		</div>
-
+		<div class="clearfix"></div>
 
 </div>
 

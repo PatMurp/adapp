@@ -6,26 +6,27 @@
 			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
 		</div>
 		<div class="col-md-3">
-			<h4><%= @project.name %> CHP Output</h4>
+			<h3><%= @project.name %> CHP Output</h3>
 		</div>
 	</div>
 
 	<div class="row">
+		<!-- CHP energy chart -->
 		<div class="col-md-4">
-				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
-													"Salable Heat" => @project.chp_salable_heat, 
-													"Generated Electricity" => @project.chp_salable_elec
-				}) %>
-				<p class="text-center">MWH CHP Energy</p>
+			<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
+												"Salable Heat" => @project.chp_salable_heat, 
+												"Generated Electricity" => @project.chp_salable_elec
+			}) %>
+			<p class="text-center">MWH CHP Energy</p>
 		</div>
-
+		<!-- CHP potential income chart -->
 		<div class="col-md-4">
 				<%= column_chart({"Heat Value" => @project.calc_potential_income_heat,
 													"Electricity Value" => @project.calc_potential_income_elec,
 													"Combined Value" => @project.calc_total_potential_income_chp
 													
 				}) %>
-				<p class="text-center">Potential Value € Republic of Ireland Tariffs</p>
+				<p class="text-center">Potential Income € Republic of Ireland Tariffs</p>
 		</div>
 
 		<!-- 3 column panel to right of page -->
@@ -35,7 +36,7 @@
 					<h4 class="panel-title">Combined Heat & Power (CHP)</h4>
 				</div>
 				<div class="panel-body">
-					<div id="hint">
+					<div id="hint"> <!-- bootstrap 3 tooltips enabled -->
 						<h5><%= @project.name %> 
 
 						<a href="#" rel="tooltip" title="CHP generation is the most common use for biogas. 
@@ -53,11 +54,12 @@
 
 						Heat & Elec = <%= number_euro(@project.calc_total_potential_income_chp) %><br><br>
 						
-					</div>
+					</div> <!-- end tooltips enabled -->
+
 					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
-					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
-					<%= link_to 'Upgrading >>', upgrading_project_path(@project), :class => 'btn btn-info btn-sm' %><br><br>
+					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1"><br><br>
 					<%= link_to '<< Digestate', digestate_project_path(@project), :class => 'btn btn-info btn-sm'%>
+					<%= link_to 'Upgrading >>', upgrading_project_path(@project), :class => 'btn btn-info btn-sm' %>
 
 				</div>	
 			</div>

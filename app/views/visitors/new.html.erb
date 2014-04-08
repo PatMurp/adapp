@@ -6,7 +6,7 @@
 				Anaerobic digestion is a process in which of organic materials are broken down
 				by microorganisms in the absence of oxygen.<br><br>
 				This app allows you to create multiple anaerobic digestion projects. The app calculates
-				potenital: biogas, digestate, electricity, heat and upgraded biogas that can be generated with chosen feedstock volumes. <br><br>
+				potenital: biogas, digestate, electricity, heat and upgraded biogas, and CO<sub>2</sub> savings that can be generated with chosen feedstock volumes. <br><br>
 
 				<!-- only display buttons if user is logged in -->
 				<% if user_signed_in? %>
@@ -17,7 +17,7 @@
 					<%= link_to "Login", new_user_session_path, :class => 'btn btn-primary btn-lg'  %><br><br>
 				<% end %>
 			</p>
-			<div class="col-md-5">
+			<div class="col-md-5 img-circle">
 				<%= image_tag "adplant.jpg" %>
 			</div>
 		</div>

@@ -5,27 +5,29 @@
 			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
 		</div>
 		<div class="col-md-3">
-			<h4><%= @project.name %> Digestate Output</h4>
+			<h3><%= @project.name %> Digestate Output</h3>
 		</div>
-	</div>
+	</div><br><br>
 
-	
+		<!-- tonnes digestate piechart -->
 		<div class="col-md-5">
 			<%= pie_chart @project.calculations.map { |calculation|
 				[calculation.feedstock.type, calculation.calc_digestate_tonnes] 
 			}, width: "250px"  %>
 			<p class="text-center">Potential Digestate Tonnes</p>
 		</div>
-			<div class="col-md-4">
-				<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
-													"Phosphorus" => @project.total_digestate_phosphorus,
-													"Potash" => @project.total_digestate_potash
-				}) %>
-				<p class="text-center">Tonnes Potential Nutrients</p>
+
+		<!-- digestate nutrient tonnes chart -->
+		<div class="col-md-4">
+			<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
+												"Phosphorus" => @project.total_digestate_phosphorus,
+												"Potash" => @project.total_digestate_potash
+			}) %>
+			<p class="text-center">Tonnes Potential Nutrients</p>
 		</div>
 
 		<div class="col-md-3">
-			<div class=" panel panel-success">
+			<div class=" panel panel-success"> <!-- right side hand info panel -->
 				<div class="panel-heading">
 					<h4 class="panel-title">Potential Digestate</h4>
 				</div>
@@ -33,19 +35,20 @@
 				<div class="panel-body">
 					<h5><%= @project.name %> Totals Tonnes</h5>
 
-					<div id="hint">
+					<div id="hint"> <!-- bootstrap 3 tooltips enabled -->
 						<a href="#" rel="tooltip" title="Digestate is a nutrient rich material remaining after anaerobic digestion. It can be used as a replacement for mineral fertilizers.">
 							Digestate</a>= <%= number_delimiter(@project.total_digestate_tonnes) %><br><br>
-					</div>
+					</div> <!-- end tooltips enabled -->
 					
 					Nitrogen= <%= number_delimiter(@project.total_digestate_nitrogen) %><br>
 					Phosphorus= <%= number_delimiter(@project.total_digestate_phosphorus) %><br>
 					Potassium = <%= number_delimiter(@project.total_digestate_potash) %><br><br>
 
 					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
-					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
-					<%= link_to 'CHP >>', chp_project_path(@project), :class => 'btn btn-info btn-sm' %><br><br>
+					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1"><br><br>
+					
 					<%= link_to '<< Biogas', project_path(@project), :class => 'btn btn-info btn-sm' %>
+					<%= link_to 'CHP >>', chp_project_path(@project), :class => 'btn btn-info btn-sm' %>
 					
 				</div>	
 			</div>

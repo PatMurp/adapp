@@ -6,11 +6,9 @@
 			<%= link_to 'View Project Report', report_project_path(@project), :class => 'btn btn-primary' %>
 		</div>
 		<div class="col-md-3">
-			<h4><%= @project.name %> Upgrading Output</h4>
+			<h3><%= @project.name %> Upgrading Output</h3>
 		</div>
 	</div>
-
-	
 
 	<!-- Dynamic alerts displayed depending on biogas upgraded per hour -->
 	<h3 class="text-center">
@@ -27,19 +25,21 @@
 	</h3>
 	
 
-	<!-- column charts -->
+	
 	<div class="row">
+		<!-- upgraded methane chart -->
 		<div class="col-md-4">
 				<%= column_chart({"Available Methane" => @project.total_m3_ch4,
 													"Upgraded Methane" => @project.calc_upg_ch4 
 				}) %>
 				<p class="text-center">m&#179; Methane</p>
 		</div>
+		<!-- upgraded methane potential value chart -->
 		<div class="col-md-4">
 				<%= column_chart({"Vehicle Fuel" => @project.calc_potential_upg_income_vehicle,
 													"Gas Grid" => @project.calc_potential_gas_grid_income 
 				}) %>
-				<p class="text-center">Potential Value €</p>
+				<p class="text-center">Potential Income €</p>
 		</div>
 
 
@@ -94,12 +94,12 @@
 						<a href="#" rel="tooltip" title="Assumed annual household consumption 13.8 MWH methane">
 							private households
 						</a>
-					</div><br>
+					</div><br><!-- end tooltips allowed -->
 					
 					<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
-						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
-					<%= link_to 'CO2 >>', carbon_project_path(@project), :class => 'btn btn-info btn-sm'  %><br><br>
+					<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1"><br><br>
 					<%= link_to '<< CHP', chp_project_path(@project), :class => 'btn btn-info btn-sm'  %>
+					<%= link_to 'CO2 >>', carbon_project_path(@project), :class => 'btn btn-info btn-sm'  %>
 
 
 				</div>
@@ -118,7 +118,7 @@
 				<p class="text-center">Biogas Potential Income Comparsion</p>
 		</div>
 		<div class="clearfix"></div>
-
+		<!-- tables hidden by default -->
 		<div class="showhide" hidden="true">
 			<div class="col-md-8 col-md-push-2">
 				<div class="table-responsive">
