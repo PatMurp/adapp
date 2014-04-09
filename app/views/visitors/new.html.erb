@@ -2,28 +2,40 @@
 	<div class="jumbotron">
 		<h2 class="text-center">Welcome to the Anaerobic Digester Calculator</h2>
 		<div class="row">
-			<p class="col-md-7">
-				Anaerobic digestion is a process in which of organic materials are broken down
-				by microorganisms in the absence of oxygen.<br><br>
-				This app allows you to create multiple anaerobic digestion projects. The app calculates
-				potenital: biogas, digestate, electricity, heat and upgraded biogas, and CO<sub>2</sub> savings that can be generated with chosen feedstock volumes. <br><br>
+			<div  class="col-lg-7 col-md-12">
+				<p>
+					Anaerobic digestion is a process in which of organic materials are broken down
+					by microorganisms in the absence of oxygen.
+				</p>
+				<p class="hidden-xs"> <!-- hide on mobile devices -->
+					This app allows you to create multiple anaerobic digestion projects. The app calculates
+					potenital: biogas, digestate, electricity, heat and upgraded biogas, and CO<sub>2</sub> savings that can be generated with chosen feedstock volumes.
+				</p>
+			</div>
+				<div class="col-lg-5">
+					<%= image_tag "adplant.jpg" %>
+				</div>
 
 				<!-- only display buttons if user is logged in -->
-				<% if user_signed_in? %>
-					<%= link_to 'Create a New Project', new_project_path, :class => 'btn btn-primary btn-lg' %>
-					<%= link_to 'View existing Projects', projects_path, :class => 'btn btn-primary btn-lg' %><br><br>
-				<% else %>
-					<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-primary btn-lg' %>
-					<%= link_to "Login", new_user_session_path, :class => 'btn btn-primary btn-lg'  %><br><br>
-				<% end %>
-			</p>
-			<div class="col-md-5 img-circle">
-				<%= image_tag "adplant.jpg" %>
-			</div>
+				<div class="hidden-xs"><br> <!-- hide on mobile devices -->
+					<% if user_signed_in? %>
+						<%= link_to 'Create a New Project', new_project_path, :class => 'btn btn-primary btn-lg' %>
+						<%= link_to 'View existing Projects', projects_path, :class => 'btn btn-primary btn-lg' %><br><br>
+					<% else %>
+						<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-primary btn-lg' %>
+						<%= link_to "Login", new_user_session_path, :class => 'btn btn-primary btn-lg'  %><br><br>
+					<% end %>
+				</div>
+			
+			
 		</div>
-		<small class="alert alert-danger">Disclaimer: This app is for a pre-feasibility study only.
+		<!-- only visible in large and medium screens -->
+		<small class="alert alert-danger visible-md visible-lg">Disclaimer: This app is for a pre-feasibility study only.
 			To confirm calculation results you should consult the appropriate experts.
 		</small>
+		<!-- only visible in small and extra small screens -->
+		<p class="visible-xs visible-sm" id="dontuse">Disclaimer: This app is for a pre-feasibility study only.
+			To confirm calculation results you should consult the appropriate experts.</p>
 	</div>
 
 </div>
