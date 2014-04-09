@@ -72,7 +72,7 @@
 			</div>
 
 			<!-- display biogas volume piechart -->
-			<div class="col-md-6 text-center" id="biogas_volume">
+			<div class="col-md-6 text-center" id="biogas_volume"> <!-- hide in print page -->
 				<%= pie_chart @project.calculations.map { |calculation|
 					[calculation.feedstock.type, calculation.calc_m3_biogas]
 				}, width: "250px", height: "250px"   %>
@@ -81,12 +81,12 @@
 		</div>
 
 		<!-- display methane volume piechart -->
-		<div class="col-md-6 col-md-push-3" id="methane_volume">
+		<div class="col-md-6 col-md-push-3" id="methane_volume"> 
 			<%= pie_chart @project.calculations.map { |calculation|
 				[calculation.feedstock.type, calculation.calc_m3_ch4]
 			}, width: "250px", height: "250px"  %>
 			<p class="text-center">Methane Potential m&#179;</p><br>
-		</div>
+		</div> <!-- print page page-break -->
 		<div class="clearfix"></div>
 	
 		<h2 class="text-center">Digestate Values for <%= @project.name %></h2>
@@ -139,9 +139,9 @@
 						[calculation.feedstock.type, calculation.calc_digestate_tonnes] 
 					}  %>
 					<p class="text-center">Potential Digestate Tonnes</p>
-				</div>
+				</div> <!-- print page page-break -->
 					<!-- display digestate nutrients column chart -->
-					<div class="col-md-6" id="nitrient_tonnes">
+					<div class="col-md-6" id="nitrient_tonnes"> <!-- hide in print page -->
 						<%= column_chart({"Nitrogen" => @project.total_digestate_nitrogen, 
 															"Phosphorus" => @project.total_digestate_phosphorus,
 															"Potash" => @project.total_digestate_potash
@@ -222,7 +222,7 @@
 		<div class="clearfix"></div>
 
 		<!-- display chp energy column chart -->
-		<div class="col-md-5 col-md-push-1" id="chp_energy">
+		<div class="col-md-5 col-md-push-1" id="chp_energy"> <!-- hide in print page -->
 				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
 													"Salable Heat" => @project.chp_salable_heat, 
 													"Generated Electricity" => @project.chp_salable_elec
@@ -238,7 +238,7 @@
 													
 				}) %>
 				<p class="text-center">Potential Value € Republic of Ireland Tariffs</p>
-		</div>
+		</div> <!-- print page page-break -->
 		<div class="clearfix"></div>
 
 		<h2 class="text-center">Upgrading Values for <%= @project.name %></h2>
@@ -344,14 +344,14 @@
 			</div>
 
 			<!-- display upgrading methane column chart -->
-			<div class="col-md-5 col-md-push-1" id="avail_methane">
+			<div class="col-md-5 col-md-push-1" id="avail_methane"> <!-- hide in print page -->
 				<%= column_chart({"Available Methane" => @project.total_m3_ch4,
 													"Upgraded Methane" => @project.calc_upg_ch4 
 				}) %>
 				<p class="text-center">m&#179; Methane</p>
 			</div>
 			<!-- display upgrading income column chart -->
-			<div class="col-md-5" id="upg_value">
+			<div class="col-md-5" id="upg_value"> <!-- hide in print page -->
 					<%= column_chart({"Vehicle Fuel" => @project.calc_potential_upg_income_vehicle,
 														"Gas Grid" => @project.calc_potential_gas_grid_income 
 					}) %>
@@ -367,7 +367,7 @@
 
 				}) %>
 				<p class="text-center">Biogas Potential Income Comparsion</p>
-			</div>
+			</div> <!-- print page page-break -->
 
 			<div class="clearfix"></div>
 
