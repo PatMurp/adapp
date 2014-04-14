@@ -11,7 +11,7 @@
 	</div>
 
 	<!-- feedstock percentage bar chart -->
-	<div class="col-md-7">
+	<div class="col-md-7 col-sm-8">
 		<%= pie_chart @project.calculations.map { |calculation|
 			[calculation.feedstock.type, calculation.tonnes] 
 		}   %>
@@ -20,7 +20,7 @@
 
 	
 	
-	<div class="col-md-3 col-md-push-2">
+	<div class="col-md-3 col-md-push-2 col-sm-4">
 			<div class=" panel panel-success"> <!-- right side hand info panel -->
 				<div class="panel-heading">
 					<h4 class="panel-title">Biogas Potential</h4>
@@ -46,7 +46,9 @@
 						</a>  m&#179; = <%= number_delimiter(@project.total_m3_ch4) %><br><br>
 
 						<input class="btn btn-success btn-sm" type="submit" name="showh1" value="More Info" id="showh1">
-						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1">
+						<input class="btn btn-warning btn-sm" type="submit" name="hideh1" value="Hide" id="hideh1"><br><br>
+
+
 						<%= link_to 'Digestate >>', digestate_project_path(@project), :class => 'btn btn-info btn-sm' %>
 
 					</div> <!-- end tooltips enabled -->

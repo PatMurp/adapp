@@ -1,11 +1,15 @@
 <div class="row">
 	<fieldset>
-		<div class="col-md-3">
+		<div class="col-md-3 col-sm-4">
 			<%= f.number_field :tonnes, class: "form-control", 
 			 placeholder: 'Enter Tonnes', :required => true %>
 		</div>
+		<br class="visible-xs"> <!-- break on mobile devices -->
 
-		<div class="col-md-3">
+
+
+
+		<div class="col-md-3 col-sm-4">
 			<%= f.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]}, 
 			{prompt: "Select a Feedstock"}, class: "form-control", :required => true %><br>
 		</div>
@@ -14,6 +18,6 @@
 			<%= f.hidden_field :_destroy %>
 			<%= link_to "remove", '#', class: "remove_fields btn btn-warning" %>
 		</div>
-		
+		<br class="visible-xs"> <!-- break on mobile devices -->
 	</fieldset>
 </div>

@@ -25,6 +25,7 @@ group :development do
 end
 
 group :development, :test do
+	gem 'railroady'
 	gem "rspec-rails", "~> 2.14.1"
 	gem "factory_girl_rails", "~> 4.4.0"
 end

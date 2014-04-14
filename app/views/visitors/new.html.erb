@@ -1,20 +1,24 @@
 <div class="container"><br>
 	<div class="jumbotron">
-		<h2 class="text-center">Welcome to the Anaerobic Digester Calculator</h2>
+		<h2 class="text-center hidden-xs">Welcome to the Anaerobic Digester Calculator</h2>
+		<h4 class="text-center visible-xs">Welcome to the Anaerobic Digester Calculator</h4>
 		<div class="row">
 			<div  class="col-lg-7 col-md-12">
-				<p>
-					Anaerobic digestion is a process in which of organic materials are broken down
-					by microorganisms in the absence of oxygen.
-				</p>
 				<p class="hidden-xs"> <!-- hide on mobile devices -->
+					Anaerobic digestion is a process in which of organic materials are broken down
+					by microorganisms in the absence of oxygen.<br><br>
 					This app allows you to create multiple anaerobic digestion projects. The app calculates
 					potenital: biogas, digestate, electricity, heat and upgraded biogas, and CO<sub>2</sub> savings that can be generated with chosen feedstock volumes.
 				</p>
+				<h5 class="visible-xs"> <!-- display on mobile devices only -->
+					Anaerobic digestion is a process in which of organic materials are broken down
+					by microorganisms in the absence of oxygen.
+				</h5>
 			</div>
 				<div class="col-lg-5">
 					<%= image_tag "adplant.jpg" %>
 				</div>
+				<br class="visible-xs">
 
 				<!-- only display buttons if user is logged in -->
 				<div class="hidden-xs"><br> <!-- hide on mobile devices -->
@@ -33,7 +37,7 @@
 		<small class="alert alert-danger visible-md visible-lg">Disclaimer: This app is for a pre-feasibility study only.
 			To confirm calculation results you should consult the appropriate experts.
 		</small>
-		<!-- only visible in small and extra small screens -->
+		<!-- only visible on mobile and tablets -->
 		<p class="visible-xs visible-sm" id="dontuse">Disclaimer: This app is for a pre-feasibility study only.
 			To confirm calculation results you should consult the appropriate experts.</p>
 	</div>

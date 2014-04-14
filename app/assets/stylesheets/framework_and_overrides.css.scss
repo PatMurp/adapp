@@ -57,9 +57,14 @@ section {
   background-color: #90c27c;
 }
 
+// custom css for mobile devices only
 #dontuse {
   color: red;
   font-size: x-small;
+}
+
+.jumbotron > .p > .visible-xs {
+  font-size: small;
 }
 
 // custom style for navbar generated with: 
