@@ -1,9 +1,14 @@
 <div class="container">
-	<h2>New Project</h2>
+	<h2>Create New Project</h2>
 
-	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary btn-lg' %><br>
+	<%= link_to '<< Back to Projects', projects_path, :class => 'btn btn-primary btn-lg' %><br><br>
 
-	<h4>Enter a project name, select a Feedstock, enter tonnes available, and press calculate button</h4>
+	<!-- User instructions hide on mobile divices -->
+	<p class="hidden-xs">(1) Enter a project name, enter tonnes value, select a Feedstock, <br>(2) press the add link for additional feedstock fields<br>(3) press calculate button.</p>
+
+	<!-- User instructions small text for mobile divices -->
+	<small class="visible-xs"><p>(1) Enter a project name, enter tonnes value, select a Feedstock, <br>(2) press the add link for additional feedstock fields<br>(3) press calculate button.</p></small>
+
 
 	<%= render 'form' %>
 

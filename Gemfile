@@ -22,6 +22,8 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'rails-erd'
+  gem 'ruby-graphviz', '~> 1.0.9'
 end
 
 group :development, :test do

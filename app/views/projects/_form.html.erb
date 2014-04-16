@@ -16,9 +16,7 @@
 				<%= render 'calculation_fields', f: builder %>
 
 			<% end %>
-			<%= link_to_add_fields "Add feedstock field", f, :calculations %><br><br>
-			
-			
+			<%= link_to_add_fields "+ Add", f, :calculations %><br><br>
 
 			<%= f.submit "Calculate", class: "btn btn-success btn-lg" %>
 			<button type="button" class="btn btn-danger btn-lg" onClick="window.location.reload()">Reload Form</button>
