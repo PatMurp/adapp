@@ -12,10 +12,9 @@
 			
 			<%#= Calculations form builder %>
 			<%= f.fields_for :calculations do |builder| %>
-
 				<%= render 'calculation_fields', f: builder %>
-
 			<% end %>
+
 			<%= link_to_add_fields "+ Add", f, :calculations %><br><br>
 
 			<%= f.submit "Calculate", class: "btn btn-success btn-lg" %>

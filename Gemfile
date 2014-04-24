@@ -12,8 +12,13 @@ gem 'figaro'
 gem 'high_voltage'
 gem 'simple_form'
 
+# display charts
 gem 'chartkick', '~> 1.2.4'
+
+# user login, signup, authentication
 gem 'devise', '~> 3.2.4'
+
+# admin dashboard
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 group :development do

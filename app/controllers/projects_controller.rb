@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
   def new
   	@project = Project.new
-    @feedstocks = Feedstock.all
+    @feedstocks = Feedstock.all.alphabetical_order
     @project.calculations.build
   end
 

@@ -8,10 +8,6 @@
     	font-size: 80%;
     }
 
-    #feedstock_volume {
-    	
-    }
-
     #methane_volume {
     	page-break-after: always;
     }
@@ -27,5 +23,4 @@
     #income_comparsion {
     	page-break-after: always;
     }
-
  }

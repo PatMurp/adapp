@@ -1,6 +1,5 @@
 class Project < ActiveRecord::Base
 
-
 	has_many :calculations, :dependent => :destroy
 	accepts_nested_attributes_for :calculations,
 	:reject_if => lambda { |a| a[:feedstock_id].blank? }, 

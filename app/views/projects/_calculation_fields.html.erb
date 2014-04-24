@@ -1,12 +1,11 @@
 <div class="row">
 	<fieldset>
 		<div class="col-md-3 col-sm-4">
-			<!-- netative numbers not allowed, step 0.25 -->
+			<!-- negative numbers not allowed, step 0.25 -->
 			<%= f.number_field :tonnes, class: "form-control", 
 			 placeholder: 'Enter Tonnes', :min => 0, :step => 0.25, :required => true %>
 		</div>
 		<br class="visible-xs"> <!-- break on mobile devices -->
-
 
 		<div class="col-md-3 col-sm-4">
 			<%= f.select :feedstock_id, @feedstocks.map {|s| [s.type, s.id]}, 
