@@ -191,7 +191,7 @@
 						<thead>
 							<tr>
 								<th>Potential Elec</th>
-								<th>Salable Elec</th>
+								<th>Saleable Elec</th>
 								<th>Required Generator Size MW</th>
 								<th>Price MWH</th>
 								<th>Potential Income</th>
@@ -224,7 +224,7 @@
 		<!-- display chp energy column chart -->
 		<div class="col-md-5 col-md-push-1" id="chp_energy"> <!-- hide in print page -->
 				<%= column_chart({"Generated Heat" => @project.chp_usable_heat,
-													"Salable Heat" => @project.chp_salable_heat, 
+													"Saleable Heat" => @project.chp_salable_heat, 
 													"Generated Electricity" => @project.chp_salable_elec
 				}) %>
 				<p class="text-center">MWH CHP Energy</p>
