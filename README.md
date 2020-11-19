@@ -4,7 +4,7 @@ A [Demo](http://adcalapp.herokuapp.com/) is available. Login with
 email: a@a.com
 pw: tooltips  
 
-### Features
+### Features 
 * Styling with Bootstrap 3
 * Signup and login implemented with Devise gem
 * Dynamic navigation bar 
